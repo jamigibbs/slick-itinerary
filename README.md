@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Slick Itinerary
+Generate a travel itinerary from a Trello board.
 
 ## Available Scripts
 
