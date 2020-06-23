@@ -1,5 +1,8 @@
 import React from 'react';
 import Header from './Header';
+import LoadingSpinner from './LoadingSpinner';
+import './Itinerary.css';
+import { Row, Col, Divider } from 'antd';
 
 const TRELLO_API_ROOT = 'https://api.trello.com/1';
 const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
@@ -96,28 +99,32 @@ class Itinerary extends React.Component {
     return (
       <div className="App">
 
-        {!error && !isLoading && isData &&
-          <Header headerImages={itinerary.prefs.backgroundImageScaled} 
-                  backgroundColor={itinerary.prefs.backgroundTopColor}
-                  title={itinerary.name} />
-        }
+          {!error && !isLoading && isData &&
+            <Header headerImages={itinerary.prefs.backgroundImageScaled} 
+                    backgroundColor={itinerary.prefs.backgroundTopColor}
+                    title={itinerary.name} />
+          }
 
-        {!error && !isLoading && isData && (
-          itinerary.lists.map(list => {
-            return (
-              <div key={list.id}>
-                <p>Name: {list.name}</p>
-                <hr />
+          <main className="itinerary-content">
+            {!error && !isLoading && isData && (
+              itinerary.lists.map(list => {
+                return (
+                  <div key={list.id}>
+                    <p>Name: {list.name}</p>
+                    <Divider />
+                  </div>
+                );
+              })
+            )}
+          </main>
+
+            {error ? <p>{error}</p> : null}
+
+            {!error && isLoading &&
+              <div className="loading-spinner">
+                <LoadingSpinner isLoading={true} />
               </div>
-            );
-          })
-        )}
-
-        {error ? <p>{error}</p> : null}
-
-        {!error && isLoading &&
-          <h3>Loading...</h3>
-        }
+            }
 
       </div>
     )

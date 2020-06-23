@@ -1,0 +1,21 @@
+.itinerary-content {
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  .itinerary-content {
+    width: 750px;
+  }
+}
+
+.loading-spinner {
+  bottom: 0;
+  height: 100px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+	top:0;
+	right: 0;
+}
