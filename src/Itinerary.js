@@ -1,7 +1,10 @@
 import React from 'react';
 import Header from './Header';
 import LoadingSpinner from './LoadingSpinner';
+import ItineraryCards from'./ItineraryCards';
 import './Itinerary.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSuitcase} from '@fortawesome/free-solid-svg-icons'
 import { Row, Col, Divider } from 'antd';
 
 const TRELLO_API_ROOT = 'https://api.trello.com/1';
@@ -106,25 +109,37 @@ class Itinerary extends React.Component {
           }
 
           <main className="itinerary-content">
-            {!error && !isLoading && isData && (
-              itinerary.lists.map(list => {
-                return (
-                  <div key={list.id}>
-                    <p>Name: {list.name}</p>
-                    <Divider />
-                  </div>
-                );
-              })
-            )}
-          </main>
 
-            {error ? <p>{error}</p> : null}
+            {!error && !isLoading && isData &&
+              <div>
+                <div className="itinerary-start-circle">
+                  <FontAwesomeIcon icon={faSuitcase} color="white" />
+                </div>
 
-            {!error && isLoading &&
-              <div className="loading-spinner">
-                <LoadingSpinner isLoading={true} />
+                <div className="itinerary-lists">
+                  {itinerary.lists.map(list => {
+                    return (
+                      <div key={list.id} className="itinerary-list">
+                        <div className="itinerary-list-circle"></div>
+                          <h2 className="itinerary-list-name">{list.name}</h2>
+                          <ItineraryCards cards={list.cards} />
+                          <Divider />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             }
+
+          </main>
+
+          {error ? <p>{error}</p> : null}
+
+          {!error && isLoading &&
+            <div className="loading-spinner">
+              <LoadingSpinner isLoading={true} />
+            </div>
+          }
 
       </div>
     )

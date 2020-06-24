@@ -1,12 +1,14 @@
 .itinerary-content {
   margin: 0 auto;
-  width: 100%;
+  padding-top: 50px;
+  position: relative;
+  width: 70%;
 }
 
 /* Large desktop */
 @media (min-width: 1200px) {
   .itinerary-content {
-    width: 750px;
+    width: 550px;
   }
 }
 
@@ -18,4 +20,45 @@
   position: absolute;
 	top:0;
 	right: 0;
+}
+
+.itinerary-start-circle {
+  align-items: center;
+  background-color: #E1474A;
+  border: 6px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  left: -23px;
+  position: absolute;
+  top: -25px;
+  width: 50px;
+}
+
+.itinerary-lists {
+  border-left: 4px solid #EDEDED;
+  padding-top: 30px;
+  position: relative;
+  top: -31px;
+}
+
+.itinerary-list {
+  padding-left: 20px;
+}
+
+.itinerary-list-circle {
+  background-color: #ffffff;
+  border: 4px solid #E1474A;
+  border-radius: 50%;
+  height: 20px;
+  position: absolute;
+  left: -12px;
+  width: 20px;
+}
+
+.itinerary-list-name {
+  color: #E1474A;
+  font-size: 16px;
+  font-weight: 800;
 }

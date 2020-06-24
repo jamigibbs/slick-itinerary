@@ -1,0 +1,13 @@
+ul.cards-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.cards-start-circle {
+  background-color: #EDEDED;
+  border-radius: 50%;
+  height: 12px;
+  position: absolute;
+  left: -8px;
+  width: 12px;
+}
