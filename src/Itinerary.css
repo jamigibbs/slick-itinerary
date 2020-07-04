@@ -45,6 +45,7 @@
 
 .itinerary-list {
   padding-left: 20px;
+  padding-bottom: 20px;
 }
 
 .itinerary-list-circle {
@@ -59,6 +60,9 @@
 
 .itinerary-list-name {
   color: #E1474A;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
+  margin-bottom: 1.75em;
+  position: relative;
+  top: -3px;
 }

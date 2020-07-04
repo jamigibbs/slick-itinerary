@@ -5,7 +5,6 @@ import ItineraryCards from'./ItineraryCards';
 import './Itinerary.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcase} from '@fortawesome/free-solid-svg-icons'
-import { Row, Col, Divider } from 'antd';
 
 const TRELLO_API_ROOT = 'https://api.trello.com/1';
 const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
@@ -55,10 +54,11 @@ class Itinerary extends React.Component {
               // Getting custom field data so that we can map the field name.
               customFields = data;
               // Get the cards and map them to their assigned list.
-              return fetch(`${TRELLO_API_ROOT}/boards/${boardId}?cards=all&card_customFieldItems=true&key=${TRELLO_KEY}&token=${TRELLO_TOKEN}&attachments=true`);
+              return fetch(`${TRELLO_API_ROOT}/boards/${boardId}?cards=all&card_customFieldItems=true&key=${TRELLO_KEY}&token=${TRELLO_TOKEN}&attachments=true&attachment_fields=all`);
             })
             .then((response) => response.json())
             .then((data) => {
+              console.log('** cards data', data);
               data.cards.forEach((card, i) => {
                 // Finding which list the card goes and putting it into that list.
                 const list = itinerary.lists.find((item) => {
@@ -123,7 +123,6 @@ class Itinerary extends React.Component {
                         <div className="itinerary-list-circle"></div>
                           <h2 className="itinerary-list-name">{list.name}</h2>
                           <ItineraryCards cards={list.cards} />
-                          <Divider />
                       </div>
                     );
                   })}

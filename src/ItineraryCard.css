@@ -1,0 +1,52 @@
+.card-desc {
+  color: #757575;
+}
+
+.card-name, .card-name a {
+  color: #E1474A;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.card-name a:hover {
+  color: #212121;
+}
+
+.card-address {
+  color: #BDBDBD;
+  margin-bottom: 15px;
+}
+
+.card-address:hover {
+  color: #212121;
+  cursor: pointer;
+}
+
+.card-address a.ant-typography, .card-address .ant-typography a {
+  color: #999999;
+}
+
+.card-address a.ant-typography:hover, .card-address .ant-typography a:hover {
+  color: #212121;
+}
+
+.itinerary-card {
+  position: relative;
+}
+
+.card-start-time {
+  color: #999999;
+  left: 0;
+  position: relative;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  .card-start-time {
+    position: absolute;
+    left: -105px;
+    min-width: 75px;
+    text-align: center;
+  }
+}

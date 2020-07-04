@@ -3,11 +3,16 @@ ul.cards-list {
   padding-left: 0;
 }
 
+ul.cards-list li {
+  margin-bottom: 2em;
+}
+
 .cards-start-circle {
   background-color: #EDEDED;
   border-radius: 50%;
   height: 12px;
-  position: absolute;
   left: -8px;
+  margin-top: 6px;
+  position: absolute;
   width: 12px;
 }
