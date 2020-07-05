@@ -35,9 +35,10 @@ class Header extends React.Component {
       <Layout className="layout">
         <header className="header" style={headerStyle}>
           <Menu theme="dark" mode="horizontal">
-            <Menu.Item key="2" icon={<FilePdfOutlined />}>
-              <span className="hide-screen">Generate PDF</span>
-              <button onClick={() => window.print()}></button>
+            <Menu.Item key="2" 
+              icon={<FilePdfOutlined />} 
+              onClick={() => window.print()}>
+              <span className="hide-screen">Print Itinerary</span>
             </Menu.Item>
             <Menu.Item key="1" icon={<HomeOutlined />}>
               <span className="hide-screen">Home</span>
