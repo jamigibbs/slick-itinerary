@@ -12,6 +12,12 @@
   }
 }
 
+@media print {
+  .itinerary-content {
+    width: 75%;
+  }
+}
+
 .loading-spinner {
   bottom: 0;
   height: 100px;

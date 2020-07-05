@@ -4,16 +4,24 @@
   -o-background-size: cover;
   background-size: cover;
   height: 250px;
-  text-align: center;
+  position: relative;
+  /* text-align: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 /* Large desktop */
 @media (min-width: 1200px) {
   .header {
-    height: 300px;
+    height: 400px;
+  }
+}
+
+@media print {
+  .header {
+    border-bottom: 1px solid #cccccc;
+    height: 100px;
   }
 }
 
@@ -21,9 +29,50 @@
   color: white;
   font-size: 36px;
   font-weight: 400;
+  left: 50%;
+  line-height: 1.2;
+  position: absolute;
+  text-align: center;
   text-shadow: 0em 0.04em 0.09em rgba(0, 0, 0, 0.75);
+  transform: translate(-50%, -50%);
+  top: 50%;
+}
+
+@media print {
+  .title {
+    text-shadow: none;
+  }
 }
 
 .title span {
   font-weight: 700;
+}
+
+.hide-screen {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.ant-menu-item {
+  /* padding-left: 0; */
+}
+
+.ant-menu-item .anticon {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.ant-menu.ant-menu-dark {
+  background: rgba(0, 0, 0, 0.4);
+  text-align: right;
+}
+
+@media print {
+  .ant-menu {
+    display: none;
+  }
 }

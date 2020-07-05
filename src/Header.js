@@ -1,4 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Layout, Menu } from 'antd';
+import {
+  HomeOutlined,
+  FilePdfOutlined
+} from '@ant-design/icons';
 import './Header.css';
 
 class Header extends React.Component {
@@ -26,9 +32,21 @@ class Header extends React.Component {
     const titleAfterFirstWord = titleArray.join(' ');
 
     return (
-      <header className="header" style={headerStyle}>
-        <h1 className="title"><span>{titleFirstWord}</span> {titleAfterFirstWord}</h1>
-      </header>
+      <Layout className="layout">
+        <header className="header" style={headerStyle}>
+          <Menu theme="dark" mode="horizontal">
+            <Menu.Item key="2" icon={<FilePdfOutlined />}>
+              <span className="hide-screen">Generate PDF</span>
+              <button onClick={() => window.print()}></button>
+            </Menu.Item>
+            <Menu.Item key="1" icon={<HomeOutlined />}>
+              <span className="hide-screen">Home</span>
+              <Link to="/" />
+            </Menu.Item>
+          </Menu>
+          <h1 className="title"><span>{titleFirstWord}</span> {titleAfterFirstWord}</h1>
+        </header>
+      </Layout>
     )
   }
 

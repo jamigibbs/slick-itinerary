@@ -42,6 +42,12 @@
   position: relative;
 }
 
+@media print {
+  .card-start-time {
+    left: -105px;
+  }
+}
+
 /* Large desktop */
 @media (min-width: 1200px) {
   .card-start-time {
