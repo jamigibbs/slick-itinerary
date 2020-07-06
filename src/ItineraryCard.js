@@ -13,7 +13,7 @@ class ItineraryCard extends React.Component {
   }
 
   render() {
-    const { card } = this.props;
+    const { card, accentColor } = this.props;
     const{ desc, customFieldItems, cover } = card;
     
     const coverUrl = cover.url ? cover.url : cover.sharedSourceUrl;
@@ -55,8 +55,8 @@ class ItineraryCard extends React.Component {
         <div>
           <div className="header-left-column">
             {link 
-              ? <h4 className="card-name"><a href={link.value.text}>{card.name}</a></h4>
-              :  <h4 className="card-name">{card.name}</h4>
+              ? <h4 className="card-name"><a href={link.value.text} style={{color: accentColor}}>{card.name}</a></h4>
+              :  <h4 className="card-name" style={{color: accentColor}}>{card.name}</h4>
             }
             {address && 
               <div className="card-address">

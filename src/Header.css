@@ -58,7 +58,7 @@
 }
 
 .ant-menu-item {
-  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .ant-menu-item .anticon {
@@ -68,7 +68,6 @@
 
 .ant-menu.ant-menu-dark {
   background: rgba(0, 0, 0, 0.4);
-  text-align: right;
 }
 
 @media print {
@@ -79,4 +78,12 @@
 
 .ant-menu.ant-menu-dark .ant-menu-item-selected {
   background-color: unset;
+}
+
+.twitter-picker {
+  position: absolute!important;
+}
+
+.hidden {
+  display: none;
 }

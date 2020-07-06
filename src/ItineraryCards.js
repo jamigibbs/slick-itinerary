@@ -6,7 +6,7 @@ import { Divider } from 'antd';
 class ItineraryCards extends React.Component {
 
   render() {
-    const { cards } = this.props;
+    const { cards, accentColor } = this.props;
     const cardsCount = cards.length;
     return (
       <div>
@@ -15,7 +15,7 @@ class ItineraryCards extends React.Component {
             return (
               <li key={card.id}>
                 <span className="cards-start-circle"></span>
-                <ItineraryCard card={card} />
+                <ItineraryCard card={card} accentColor={accentColor} />
                 {cardsCount !== i + 1 && <Divider />}
               </li>
             )

@@ -1,9 +1,9 @@
 .card-desc {
   color: #757575;
+  word-wrap: break-word;
 }
 
 .card-name, .card-name a {
-  color: #E1474A;
   font-weight: 600;
   font-size: 18px;
   line-height: 1.4;

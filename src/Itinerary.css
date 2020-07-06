@@ -30,7 +30,6 @@
 
 .itinerary-start-circle {
   align-items: center;
-  background-color: #E1474A;
   border: 6px solid #ffffff;
   border-radius: 50%;
   display: flex;
@@ -65,7 +64,6 @@
 }
 
 .itinerary-list-name {
-  color: #E1474A;
   font-size: 18px;
   font-weight: 800;
   margin-bottom: 1.75em;

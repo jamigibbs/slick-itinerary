@@ -9,17 +9,27 @@ import { faSuitcase} from '@fortawesome/free-solid-svg-icons'
 const TRELLO_API_ROOT = 'https://api.trello.com/1';
 const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
 const TRELLO_TOKEN = process.env.REACT_APP_TRELLO_TOKEN;
+const ACCENT_COLOR_KEY = 'si_accent_color';
 
 class Itinerary extends React.Component {
   state = {
     isLoading: true,
     itinerary: {},
-    error: null
+    error: null,
+    accentColor: '#E1474A',
   }
 
   componentDidMount() {
     const boardShortLink = this.props.match.params.boardShortLink;
     this.fetchItinerary(boardShortLink);
+  }
+
+  updateAccentColor(accentColor){
+    this.setState({accentColor});
+
+    // Setting the selected color into local storage.
+    const itineraryColorKey = ACCENT_COLOR_KEY + '_' + this.state.itinerary.shortLink;
+    localStorage.setItem(itineraryColorKey, accentColor);
   }
 
   fetchItinerary(boardShortLink) {
@@ -37,6 +47,12 @@ class Itinerary extends React.Component {
 
         if (itinerary.id) {
           boardId = itinerary.id;
+
+          // Checking if there's a selected accent color available yet.
+          const itineraryColorKey = ACCENT_COLOR_KEY + '_' + itinerary.shortLink;
+          const accentColor = localStorage.getItem(itineraryColorKey);
+          if (accentColor) this.setState({accentColor});
+
           fetch(`${TRELLO_API_ROOT}/boards/${boardId}/lists?key=${TRELLO_KEY}&token=${TRELLO_TOKEN}`)
             .then((response) => response.json())
             .then((data) => {
@@ -131,7 +147,7 @@ class Itinerary extends React.Component {
   }
 
   render() {
-    const { isLoading, itinerary, error } = this.state;
+    const { isLoading, itinerary, error, accentColor } = this.state;
     const isData = itinerary.id;
     return (
       <div className="App">
@@ -139,14 +155,16 @@ class Itinerary extends React.Component {
           {!error && !isLoading && isData &&
             <Header headerImages={itinerary.prefs.backgroundImageScaled} 
                     backgroundColor={itinerary.prefs.backgroundTopColor}
-                    title={itinerary.name} />
+                    title={itinerary.name} 
+                    accentColor={this.state.accentColor}
+                    handleColorUpdated={(hex) => this.updateAccentColor(hex)}/>
           }
 
           <main className="itinerary-content">
 
             {!error && !isLoading && isData &&
               <div>
-                <div className="itinerary-start-circle">
+                <div className="itinerary-start-circle" style={{backgroundColor: accentColor}}>
                   <FontAwesomeIcon icon={faSuitcase} color="white" />
                 </div>
 
@@ -154,9 +172,9 @@ class Itinerary extends React.Component {
                   {itinerary.lists.map(list => {
                     return (
                       <div key={list.id} className="itinerary-list">
-                        <div className="itinerary-list-circle"></div>
-                          <h2 className="itinerary-list-name">{list.name}</h2>
-                          <ItineraryCards cards={list.cards} />
+                        <div className="itinerary-list-circle" style={{borderColor: accentColor}}></div>
+                          <h2 className="itinerary-list-name" style={{color: accentColor}}>{list.name}</h2>
+                          <ItineraryCards cards={list.cards} accentColor={accentColor} />
                       </div>
                     );
                   })}
