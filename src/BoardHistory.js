@@ -6,9 +6,10 @@ import './LinkInput.css';
 const BoardHistory = (props) => {
   const origin = window.location.origin;
 
+  // Sort from timestamp and return only first 10.
   const data = props.data.sort((a, b) => {
     return b.timestamp - a.timestamp;
-  })
+  }).slice(0, 10);
   
   return (
     <div>
@@ -19,7 +20,7 @@ const BoardHistory = (props) => {
         dataSource={data}
         renderItem={item => (
           <List.Item>
-            <Link to={item.id}>{`${origin}/${item.id}`}</Link>
+            <Link to={item.id}>{item.name}</Link>
             <a href={`https://trello.com/b/${item.id}`}>{`https://trello.com/b/${item.id}`}</a>
           </List.Item>
         )}

@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { Input } from 'antd';
 import './LinkInput.css';
 const BOARD_HISTORY_KEY = 'si_board_history';
+const TRELLO_API_ROOT = 'https://api.trello.com/1';
+const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
+const TRELLO_TOKEN = process.env.REACT_APP_TRELLO_TOKEN;
 
 const LinkInput = (props) => {
   const [link, setLink] = useState('');
@@ -23,7 +26,7 @@ const LinkInput = (props) => {
     }
   }
 
-  function updateBoardHistory(id){
+  async function updateBoardHistory(id){
     let timestamp =  Date.now();
     const boardHistory = localStorage.getItem(BOARD_HISTORY_KEY);
 
@@ -39,13 +42,21 @@ const LinkInput = (props) => {
         boardHistoryParsed[index].timestamp = timestamp;
       } else {
         // Otherwise, add the new board to the history.
-        boardHistoryParsed.push({timestamp, id});
+        const trelloResponse = await getBoardName(id);
+        const boardData = await trelloResponse.json();
+        boardHistoryParsed.push({timestamp, id, name: boardData.name});
       }
       localStorage.setItem(BOARD_HISTORY_KEY, JSON.stringify(boardHistoryParsed));
     } else {
-      const newBoardHistory = [{timestamp, id}];
+      const trelloResponse = await getBoardName(id);
+      const boardData = await trelloResponse.json();
+      const newBoardHistory = [{timestamp, id, name: boardData.name}];
       localStorage.setItem(BOARD_HISTORY_KEY, JSON.stringify(newBoardHistory));
     }
+  }
+
+  function getBoardName(id) {
+    return fetch(`${TRELLO_API_ROOT}/boards/${id}?fields=name&key=${TRELLO_KEY}&token=${TRELLO_TOKEN}`);
   }
 
   function handleInputChange(event) {
