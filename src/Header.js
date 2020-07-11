@@ -1,7 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Layout, Menu } from 'antd';
-import { HomeOutlined, FilePdfOutlined, BgColorsOutlined } from '@ant-design/icons';
+import { 
+  HomeOutlined, 
+  FilePdfOutlined, 
+  BgColorsOutlined, 
+  MailOutlined } from '@ant-design/icons';
 import { TwitterPicker } from 'react-color';
 import './Header.css';
 
@@ -11,8 +15,28 @@ class Header extends React.Component {
     document.querySelector('.color-picker').classList.toggle('hidden');
   }
 
+  handleShareClick(event){
+    event.preventDefault();
+    console.log('share clicked', this.emailLink())
+    window.location.href = this.emailLink();
+  }
+
+  emailLink() {
+    const { title } = this.props;
+    const email = {
+      subject: `Check out the itinerary for ${title}`,
+      body: `I created an itinerary for our trip and I\'d like to share it with you: ${window.location.href}`
+    }
+    return `mailto:enteryouremail?subject=${email.subject}&body=${email.body}`;
+  } 
+
   render() {
-    const { headerImages, backgroundColor, title, handleColorUpdated, accentColor } = this.props;
+    const { 
+      headerImages, 
+      backgroundColor, 
+      title, 
+      handleColorUpdated, 
+      accentColor } = this.props;
     let bg = null;
     let headerStyle = {};
 
@@ -44,17 +68,30 @@ class Header extends React.Component {
       <Layout className="layout">
         <header className='display-header-bg' style={headerStyle}>
           <Menu theme="dark" mode="horizontal">
-            <Menu.Item key="1" icon={<HomeOutlined />}>
+            <Menu.Item 
+              key="1" 
+              icon={<HomeOutlined />} 
+              title="Home">
               <span className="hide-screen">Home</span>
               <Link to="/" />
             </Menu.Item>
-            <Menu.Item key="2" 
+            <Menu.Item 
+              key="2" 
               icon={<FilePdfOutlined />} 
-              onClick={() => window.print()}>
-              <span className="hide-screen">Print Itinerary</span>
+              onClick={() => window.print()} 
+              title="Print Itinerary">
             </Menu.Item>
-            <Menu.Item key="3" icon={<BgColorsOutlined onClick={this.handleColorPickerClick} />}>
-              <span className="hide-screen">Hightlight Color</span>
+            <Menu.Item 
+              key="3" 
+              icon={<MailOutlined 
+              onClick={(event) => this.handleShareClick(event)} />} 
+              title="Email Itinerary">
+            </Menu.Item>
+            <Menu.Item 
+              key="4" 
+              icon={<BgColorsOutlined 
+              onClick={this.handleColorPickerClick} />} 
+              title="Highlight Color">
               <span className="color-picker hidden">
                 <TwitterPicker
                   colors={colorsArray}
