@@ -1,0 +1,18 @@
+.home-left-column-wrap {
+  position: relative;
+}
+
+.home-left-column {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+}
+
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between
+}

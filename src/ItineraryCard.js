@@ -55,12 +55,12 @@ class ItineraryCard extends React.Component {
         <div>
           <div className="header-left-column">
             {link 
-              ? <h4 className="card-name"><a href={link.value.text} style={{color: accentColor}}>{card.name}</a></h4>
+              ? <h4 className="card-name"><a href={link.value.text} style={{color: accentColor}} target="_blank" rel="noopener noreferrer">{card.name}</a></h4>
               :  <h4 className="card-name" style={{color: accentColor}}>{card.name}</h4>
             }
             {address && 
               <div className="card-address">
-                <Link href={googleMapLink} target="_blank">{address.value.text}</Link>
+                <Link href={googleMapLink} target="_blank" rel="noopener noreferrer">{address.value.text}</Link>
               </div>
             }
           </div>

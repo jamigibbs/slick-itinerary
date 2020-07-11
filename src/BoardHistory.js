@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { List, Typography, Divider } from 'antd';
-import './LinkInput.css';
+import { List, Tooltip } from 'antd';
+import './BoardHistory.css';
 
 const BoardHistory = (props) => {
-  const origin = window.location.origin;
-
   // Sort from timestamp and return only first 10.
   const data = props.data.sort((a, b) => {
     return b.timestamp - a.timestamp;
@@ -15,13 +13,16 @@ const BoardHistory = (props) => {
     <div>
       <List
         size="small"
-        header={<h4>Your Slick Itinerary History</h4>}
-        bordered
+        header={<h4>Your Latest Itineraries</h4>}
         dataSource={data}
         renderItem={item => (
           <List.Item>
-            <Link to={item.id}>{item.name}</Link>
-            <a href={`https://trello.com/b/${item.id}`}>{`https://trello.com/b/${item.id}`}</a>
+            <Link to={item.id}>{item.name} Slick Itinerary</Link>&nbsp;<span className="en-dash">–</span>
+            <Tooltip title={`${item.name} Trello board`} color="blue">
+              <a href={`https://trello.com/b/${item.id}`} target="_blank" rel="noopener noreferrer">&nbsp;  
+                <img src="trello-logo.svg" alt="Trello Logo" width="15" />
+              </a>
+            </Tooltip>
           </List.Item>
         )}
       />

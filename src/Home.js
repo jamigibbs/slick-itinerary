@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import Header from './Header';
 import LinkInput from './LinkInput';
 import BoardHistory from './BoardHistory';
-import { Layout, Row, Col, Divider } from 'antd';
+import './Home.css';
+import { Layout, Row, Col, Divider, Typography } from 'antd';
 const { Footer, Content } = Layout;
+const { Title, Paragraph } = Typography;
 const BOARD_HISTORY_KEY = 'si_board_history';
 
 class Home extends React.Component {
@@ -13,38 +15,45 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    const boardHistory = localStorage.getItem(BOARD_HISTORY_KEY);
-    console.log('boardHistory', JSON.parse(boardHistory));
-    this.setState({boardHistory: JSON.parse(boardHistory)});
+    const boardHistory = JSON.parse(localStorage.getItem(BOARD_HISTORY_KEY));
+    this.setState({boardHistory});
   }
 
   render() {
     const { boardHistory } = this.state;
-    const isBoardHistory = boardHistory.length > 0;
+    let isBoardHistory = false;
+    if (boardHistory) {
+      isBoardHistory = boardHistory.length > 0;
+    }
     return (
       <Layout>
         {
           //<Header displayBackgroundImage={false} />
-        } 
+        }
+        <div className="flex-wrapper">
         <Layout>
           <Content>
             <Row>
-              <Col span={12}>
-                <p>Home page</p>
-                <Link to="I0TyGYpi">Example Itinerary</Link>
-                <LinkInput />
-                <Divider />
-                { isBoardHistory &&
-                  <BoardHistory data={boardHistory} />
-                }
+              <Col span={12} className="home-left-column-wrap">
+                <div className="home-left-column">
+                  <Title>Slick Itinerary</Title>
+                  <Paragraph>
+                  Justo quaerat sociis id, porro! Consectetur. Pellentesque nec nibh interdum, suspendisse eligendi illo vivamus voluptas, diam eu impedit odit suscipit. Consequuntur eveniet optio consequat minus, necessitatibus, netus. Parturient repudiandae nunc.
+                  </Paragraph>
+
+                  <LinkInput />
+
+                  { isBoardHistory && <BoardHistory data={boardHistory} /> }
+                </div>
               </Col>
               <Col span={12}>
-                <img src="woman-using-laptop.svg" alt="woman and laptop" width="600px" />
+                <img src="home-bg.svg" alt="woman riding bike" />
               </Col>
             </Row>
           </Content>
         </Layout>
         <Footer style={{backgroundColor: "black"}}>Footer</Footer>
+        </div>
       </Layout>
 
     )
