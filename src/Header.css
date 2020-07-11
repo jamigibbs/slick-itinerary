@@ -1,25 +1,21 @@
-.header {
+.display-header-bg {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   height: 250px;
   position: relative;
-  /* text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 
 /* Large desktop */
 @media (min-width: 1200px) {
-  .header {
+  .display-header-bg {
     height: 400px;
   }
 }
 
 @media print {
-  .header {
+  .display-header-bg {
     border-bottom: 1px solid #cccccc;
     height: 100px;
   }
@@ -66,7 +62,7 @@
   margin-right: 5px;
 }
 
-.ant-menu.ant-menu-dark {
+.display-header-bg .ant-menu.ant-menu-dark {
   background: rgba(0, 0, 0, 0.4);
 }
 

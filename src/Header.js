@@ -28,16 +28,21 @@ class Header extends React.Component {
       }
     }
 
-    const titleArray = title.split(' ');
-    const titleFirstWord = titleArray[0];
-    titleArray.shift();
-    const titleAfterFirstWord = titleArray.join(' ');
+    let titleAfterFirstWord = null;
+    let titleFirstWord = null;
+
+    if (title) {
+      const titleArray = title.split(' ');
+      titleFirstWord = titleArray[0];
+      titleArray.shift();
+      titleAfterFirstWord = titleArray.join(' ');
+    }
 
     const colorsArray = ['#E1474A', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#263238', '#FF6900', '#F78DA7', '#9900EF'];
 
     return (
       <Layout className="layout">
-        <header className="header" style={headerStyle}>
+        <header className='display-header-bg' style={headerStyle}>
           <Menu theme="dark" mode="horizontal">
             <Menu.Item key="1" icon={<HomeOutlined />}>
               <span className="hide-screen">Home</span>
@@ -50,7 +55,7 @@ class Header extends React.Component {
             </Menu.Item>
             <Menu.Item key="3" icon={<BgColorsOutlined onClick={this.handleColorPickerClick} />}>
               <span className="hide-screen">Hightlight Color</span>
-              <span class="color-picker hidden">
+              <span className="color-picker hidden">
                 <TwitterPicker
                   colors={colorsArray}
                   color={accentColor}

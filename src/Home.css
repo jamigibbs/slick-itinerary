@@ -1,13 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700');
+
+.logo {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+}
+
 .home-left-column-wrap {
+  background-color: #ffffff;
+  padding: 20px 50px 50px 50px;
   position: relative;
 }
 
-.home-left-column {
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
+@media (min-width: 1200px) {
+  .home-left-column-wrap {
+    padding: 0;
+  }
+  .home-left-column {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+  }
 }
 
 .flex-wrapper {

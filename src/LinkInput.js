@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Input } from 'antd';
+import { Input, Typography } from 'antd';
 import './LinkInput.css';
+
+const { Text } = Typography;
 const BOARD_HISTORY_KEY = 'si_board_history';
 const TRELLO_API_ROOT = 'https://api.trello.com/1';
 const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
@@ -79,7 +81,7 @@ const LinkInput = (props) => {
         onChange={(e) => handleInputChange(e)}
         onPressEnter={(e) => handleInputSubmit(e)} />
         {error && 
-          <div className="error-message">{error}</div>
+          <Text type="danger" style={{display: 'block', marginTop: '5px'}}>{error}</Text>
         }
     </div>
   )
