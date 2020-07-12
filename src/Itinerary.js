@@ -5,6 +5,7 @@ import ItineraryCards from'./ItineraryCards';
 import './Itinerary.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcase} from '@fortawesome/free-solid-svg-icons'
+import { MehOutlined } from '@ant-design/icons';
 
 const TRELLO_API_ROOT = 'https://api.trello.com/1';
 const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
@@ -140,10 +141,10 @@ class Itinerary extends React.Component {
             })
             .catch(error => this.setState({ error, isLoading: false }));
         } else {
-          this.setState({ error: 'No board found', isLoading: false })
+          this.setState({ error: 'Sorry, no board found.', isLoading: false })
         }
       })
-      .catch((error) => this.setState({ error: 'No board found', isLoading: false }));
+      .catch((error) => this.setState({ error: 'Sorry, no board found.', isLoading: false }));
   }
 
   render() {
@@ -184,7 +185,9 @@ class Itinerary extends React.Component {
 
           </main>
 
-          {error ? <p>{error}</p> : null}
+          {error && 
+            <p className="error-message">{error} &nbsp; <MehOutlined style={{fontSize: '30px'}}/></p> 
+          }
 
           {!error && isLoading &&
             <div className="loading-spinner">

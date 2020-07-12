@@ -70,3 +70,11 @@
   position: relative;
   top: -3px;
 }
+
+.error-message {
+  align-items: center;
+  display: flex;
+  height: 90vh;
+  font-size: 24px;
+  justify-content: center;
+}
