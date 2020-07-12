@@ -27,7 +27,7 @@ class Header extends React.Component {
       subject: `Check out the itinerary for ${title}`,
       body: `I created an itinerary for our trip and I\'d like to share it with you: ${window.location.href}`
     }
-    return `mailto:enteryouremail?subject=${email.subject}&body=${email.body}`;
+    return `mailto:enteranemail?subject=${email.subject}&body=${email.body}`;
   } 
 
   render() {

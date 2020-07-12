@@ -17,10 +17,10 @@ const BoardHistory = (props) => {
         dataSource={data}
         renderItem={item => (
           <List.Item>
-            <Tooltip title="Go to itinerary" color="blue">
+            <Tooltip title="Go to itinerary" color="blue" placement="right">
               <Link to={item.id}>{item.name}</Link>
             </Tooltip>
-            <Tooltip title={`${item.name} Trello board`} color="blue">
+            <Tooltip title={`${item.name} Trello board`} color="blue" placement="right">
               <a href={`https://trello.com/b/${item.id}`} target="_blank" rel="noopener noreferrer"> 
                 <img src="trello-logo.svg" alt="Trello Logo" width="15" />
               </a>
