@@ -14,6 +14,7 @@
 @media (min-width: 1200px) {
   .home-left-column-wrap {
     padding: 0;
+    height: 100vh;
   }
   .home-left-column {
     left: 50%;

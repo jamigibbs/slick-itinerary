@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import LinkInput from './LinkInput';
 import BoardHistory from './BoardHistory';
+import HomeFooter from './HomeFooter';
 import './Home.css';
 import { Layout, Row, Col, Divider, Typography } from 'antd';
 
@@ -61,7 +62,9 @@ class Home extends React.Component {
             </Row>
           </Content>
         </Layout>
-        <Footer style={{backgroundColor: "black"}}>Footer</Footer>
+        <Footer style={{backgroundColor: '#333333'}}>
+          <HomeFooter></HomeFooter>
+        </Footer>
         </div>
       </Layout>
 
