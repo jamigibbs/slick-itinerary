@@ -1,6 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import Itinerary from './Itinerary';
+import SupportGuide from './SupportGuide';
 import Home from './Home';
 import {
   BrowserRouter as Router,
@@ -17,6 +18,7 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/guide" component={SupportGuide} />
             <Route path="/:boardShortLink" component={Itinerary} />
           </Switch>
         </Router>

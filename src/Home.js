@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import LinkInput from './LinkInput';
 import BoardHistory from './BoardHistory';
-import HomeFooter from './HomeFooter';
+import SiteFooter from './SiteFooter';
 import './Home.css';
 import { Layout, Row, Col, Divider, Typography } from 'antd';
 
@@ -47,7 +47,7 @@ class Home extends React.Component {
                   Quick start by copying the <a href="https://trello.com/b/I0TyGYpi" target="_blank" rel="noopener noreferrer">example board</a> and enter the board link below to generate an itineray.
                   </Paragraph>
 
-                  <Paragraph style={{marginTop: '20px'}}>Need more help? Check out the <Link>support guide</Link>.</Paragraph>
+                  <Paragraph style={{marginTop: '20px'}}>Need more help? Check out the <Link to="guide">support guide</Link>.</Paragraph>
 
                   <LinkInput />
 
@@ -63,7 +63,7 @@ class Home extends React.Component {
           </Content>
         </Layout>
         <Footer style={{backgroundColor: '#333333'}}>
-          <HomeFooter></HomeFooter>
+          <SiteFooter></SiteFooter>
         </Footer>
         </div>
       </Layout>

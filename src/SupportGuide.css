@@ -1,0 +1,30 @@
+.ant-anchor-wrapper {
+  margin-left: 0;
+}
+
+.ant-anchor {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.ant-layout-sider-children {
+  background-color: #F0F2F5;
+}
+
+.ant-anchor-link {
+  padding: 10px 0 10px 16px;
+}
+
+.ant-anchor-link .ant-anchor-link {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.parent-link > a {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+p, ul {
+  font-size: 16px;
+}

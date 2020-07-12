@@ -1,16 +1,16 @@
 import React from 'react';
-import './HomeFooter.css'
+import './SiteFooter.css'
 import { Typography } from 'antd';
 
 const { Text } = Typography;
 
-const HomeFooter = () => {
+const SiteFooter = () => {
   const year = new Date().getFullYear();
   return (
-    <div className="home-footer">
+    <div className="site-footer">
       <Text>&copy; {year} Slick Itinerary. All rights reserved.</Text>
     </div>
   )
 }
 
-export default HomeFooter;
+export default SiteFooter;
