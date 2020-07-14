@@ -14,7 +14,8 @@
 
 @media print {
   .itinerary-content {
-    width: 75%;
+    padding-top: 20px;
+    width: 95%;
   }
 }
 
@@ -41,11 +42,30 @@
   width: 50px;
 }
 
+@media print {
+  .itinerary-start-circle {
+    background-color: unset!important;
+    border: none!important;
+    display: none;
+    height: 0;
+    top: 0;
+    position: relative;
+    left: 0;
+    display: block;
+  }
+}
+
 .itinerary-lists {
   border-left: 4px solid #EDEDED;
   padding-top: 30px;
   position: relative;
   top: -31px;
+}
+
+@media print {
+  .itinerary-lists {
+    border-left: none;
+  }
 }
 
 .itinerary-list {
@@ -63,12 +83,29 @@
   width: 20px;
 }
 
+@media print {
+  .itinerary-list-circle {
+    border: 3px solid #E1474A;
+    height: 15px;
+    left: -9px;
+    width: 15px;
+    display: none;
+  }
+}
+
 .itinerary-list-name {
   font-size: 18px;
   font-weight: 800;
   margin-bottom: 1.75em;
   position: relative;
   top: -3px;
+}
+
+@media print {
+  .itinerary-list-name {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
 }
 
 .error-message {

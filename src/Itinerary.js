@@ -1,4 +1,5 @@
 import React from 'react';
+import { BackTop } from 'antd';
 import Header from './Header';
 import LoadingSpinner from './LoadingSpinner';
 import ItineraryCards from'./ItineraryCards';
@@ -152,7 +153,8 @@ class Itinerary extends React.Component {
     const isData = itinerary.id;
     return (
       <div className="App">
-
+          <BackTop />
+          
           {!error && !isLoading && isData &&
             <Header headerImages={itinerary.prefs.backgroundImageScaled} 
                     backgroundColor={itinerary.prefs.backgroundTopColor}

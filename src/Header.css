@@ -16,8 +16,8 @@
 
 @media print {
   .display-header-bg {
-    border-bottom: 1px solid #cccccc;
-    height: 100px;
+    background-image: unset!important;
+    height: unset!important;
   }
 }
 
@@ -36,7 +36,18 @@
 
 @media print {
   .title {
+    color: #424242;
+    font-size: 30px;
     text-shadow: none;
+    left: 0!important;
+    padding: 20px 0;
+    position: relative!important;
+    text-align: center!important;
+    transform: none!important;
+    top: 0!important;
+  }
+  .title span {
+    font-weight: 400!important;
   }
 }
 
