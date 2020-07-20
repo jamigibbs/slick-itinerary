@@ -1,11 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import generatePDFDocument from './generatePDFDocument';
+import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 import { Layout, Menu } from 'antd';
 import { 
   HomeOutlined, 
   FilePdfOutlined, 
   BgColorsOutlined, 
-  MailOutlined } from '@ant-design/icons';
+  MailOutlined, 
+  PrinterOutlined } from '@ant-design/icons';
 import { TwitterPicker } from 'react-color';
 import './Header.css';
 
@@ -35,6 +38,7 @@ class Header extends React.Component {
       headerImages, 
       backgroundColor, 
       title, 
+      lists,
       handleColorUpdated, 
       accentColor } = this.props;
     let bg = null;
@@ -65,6 +69,7 @@ class Header extends React.Component {
     const colorsArray = ['#E1474A', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#263238', '#FF6900', '#F78DA7', '#9900EF'];
 
     return (
+      <View>
       <Layout className="layout">
         <header className='display-header-bg' style={headerStyle}>
           <Menu theme="dark" mode="horizontal">
@@ -77,7 +82,7 @@ class Header extends React.Component {
             </Menu.Item>
             <Menu.Item 
               key="2" 
-              icon={<FilePdfOutlined />} 
+              icon={<PrinterOutlined />} 
               onClick={() => window.print()} 
               title="Print Itinerary">
             </Menu.Item>
@@ -100,10 +105,17 @@ class Header extends React.Component {
                 />
               </span>
             </Menu.Item>
+            <Menu.Item 
+              key="5"
+              title="PDF Itinerary" 
+              icon={<FilePdfOutlined />} 
+              onClick={() => generatePDFDocument(title, lists, accentColor, headerImages, backgroundColor)}>
+            </Menu.Item>
           </Menu>
           <h1 className="title"><span>{titleFirstWord}</span> {titleAfterFirstWord}</h1>
         </header>
       </Layout>
+      </View>
     )
   }
 

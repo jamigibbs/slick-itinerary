@@ -159,6 +159,7 @@ class Itinerary extends React.Component {
             <Header headerImages={itinerary.prefs.backgroundImageScaled} 
                     backgroundColor={itinerary.prefs.backgroundTopColor}
                     title={itinerary.name} 
+                    lists={itinerary.lists} 
                     accentColor={this.state.accentColor}
                     handleColorUpdated={(hex) => this.updateAccentColor(hex)}/>
           }
