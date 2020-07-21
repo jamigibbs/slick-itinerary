@@ -30,9 +30,8 @@ const PDFItinerary = (props) => {
       padding: '15px'
     },
     image: {
-      height: 450,
       marginHorizontal: 0,
-      width: 620,
+      width: 620
     },
     titleParent: {
   	  display: 'flex',
@@ -41,25 +40,27 @@ const PDFItinerary = (props) => {
   	  justifyContent: 'center'
     },
     title: {
-      color: '#333333',
-      fontFamily: 'Roboto',
-      fontWeight: 100,
+      color: '#616161',
+      fontFamily: 'PT Serif',
+      fontWeight: 700,
       fontSize: 30,
       textAlign: 'center'
     },
 	  listTitle: {
-      fontSize: 18,
-      textAlign: 'center',
-      marginBottom: 20,
-      marginTop: 20
+      color: '#424242',
+      fontFamily: 'PT Serif',
+      fontWeight: 700,
+      fontSize: 16,
+      marginBottom: 10,
+      marginTop: 10,
+      paddingHorizontal: 50
     },
     card: {
-      border: '1 dashed #efefef',
+      fontFamily: 'Roboto',
       fontSize: 12,
-      lineHeight: 1.4,
-      marginBottom: 20,
+      lineHeight: 1.3,
+      marginBottom: 5,
       paddingTop: 15,
-      paddingBottom: 15,
       paddingHorizontal: 50
     },
     cardImage: {
@@ -70,36 +71,34 @@ const PDFItinerary = (props) => {
       position: 'absolute',
       right: 0
     },
+    marginHorizontal: {
+      marginHorizontal: 20
+    },
     cardTitle: {
       color: accentColor,
 	    fontSize: 16,
-      marginHorizontal: 30
     },
     cardTime: {
-      color: '#999999',
+      color: '#333333',
+      fontWeight: 700,
       fontSize: 12,
       marginBottom: 8
     },
     cardAddress: {
       color: '#757575',
-      marginHorizontal: 30
     },
 	  cardLink: {
       color: '#757575',
-      marginHorizontal: 30
+      marginBottom: 3
     },
     cardDesc: {
-      color: '#212121',
-      marginHorizontal: 30,
-      marginBottom: 5,
+      color: '#757575',
       marginTop: 10
     },
     cardLabelParent: {
-      // borderTop: '1 solid #efefef',
       display: 'flex',
       flexDirection: 'row',
-      paddingTop: 10,
-      marginHorizontal: 30,
+      paddingTop: 5,
       width: 500
     },
     cardLabel: {
@@ -189,7 +188,6 @@ const PDFItinerary = (props) => {
               <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
                 `${pageNumber} / ${totalPages}`
               )} fixed />
-
           </Page>
 
             {lists.map((list, i) => (
@@ -214,21 +212,21 @@ const PDFItinerary = (props) => {
                       </Image>
                     }
                     
-                    <Text style={styles.cardTitle}>{card.name}</Text>
+                    <Text style={[styles.cardTitle, styles.marginHorizontal]}>{card.name}</Text>
 
                     {card.customFieldItems.map((field, k) => (
-                      <View key={k}>
+                      <View key={k} style={styles.marginHorizontal}>
                         {field.name === 'Address' && <Text style={styles.cardAddress}>{field.value.text}</Text>}
                         {field.name === 'Link' && <Text style={styles.cardLink}>{field.value.text}</Text>}
                       </View>
                     ))}
 
-                    <Text style={styles.cardDesc}>{removeMd(card.desc)}</Text>
+                    <Text style={[styles.cardDesc, styles.marginHorizontal]}>{removeMd(card.desc)}</Text>
                     
-                    <View style={styles.cardLabelParent}>
-                    {card.labels.map((label) => (
-                      <Text style={[styles.cardLabel, styles[`cardLabel${label.color}`]]}>{label.name}</Text>
-                    ))}
+                    <View style={[styles.cardLabelParent, styles.marginHorizontal]}>
+                      {card.labels.map((label) => (
+                        <Text style={[styles.cardLabel, styles[`cardLabel${label.color}`]]}>{label.name}</Text>
+                      ))}
                     </View>
 
                   </View>
