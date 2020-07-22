@@ -8,16 +8,16 @@ const PDFItinerary = (props) => {
 
   // https://gist.github.com/karimnaaji/b6c9c9e819204113e9cabf290d580551
   Font.register({ family: 'PT Serif', fonts: [
-    { src: 'http://fonts.gstatic.com/s/ptserif/v8/sAo427rn3-QL9sWCbMZXhA.ttf' }, // font-style: normal, font-weight: normal
-    { src: 'http://fonts.gstatic.com/s/ptserif/v8/kyZw18tqQ5if-_wpmxxOeKCWcynf_cDxXwCLxiixG1c.ttf', fontWeight: 700 },
+    { src: 'https://fonts.gstatic.com/s/ptserif/v8/sAo427rn3-QL9sWCbMZXhA.ttf' }, // font-style: normal, font-weight: normal
+    { src: 'https://fonts.gstatic.com/s/ptserif/v8/kyZw18tqQ5if-_wpmxxOeKCWcynf_cDxXwCLxiixG1c.ttf', fontWeight: 700 },
    ]});
 
    Font.register({ family: 'Roboto', fonts: [
-    { src: 'http://fonts.gstatic.com/s/roboto/v15/W5F8_SL0XFawnjxHGsZjJA.ttf' }, // font-style: normal, font-weight: normal
-    { src: '"http://fonts.gstatic.com/s/roboto/v15/7MygqTe2zs9YkP0adA9QQQ.ttf', fontWeight: 100 },
-    { src: 'http://fonts.gstatic.com/s/roboto/v15/dtpHsbgPEm2lVWciJZ0P-A.ttf', fontWeight: 300 },
-    { src: 'http://fonts.gstatic.com/s/roboto/v15/Uxzkqj-MIMWle-XP2pDNAA.ttf', fontWeight: 500 },
-    { src: 'http://fonts.gstatic.com/s/roboto/v15/bdHGHleUa-ndQCOrdpfxfw.ttf', fontWeight: 700 },
+    { src: 'https://fonts.gstatic.com/s/roboto/v15/W5F8_SL0XFawnjxHGsZjJA.ttf' }, // font-style: normal, font-weight: normal
+    { src: '"https://fonts.gstatic.com/s/roboto/v15/7MygqTe2zs9YkP0adA9QQQ.ttf', fontWeight: 100 },
+    { src: 'https://fonts.gstatic.com/s/roboto/v15/dtpHsbgPEm2lVWciJZ0P-A.ttf', fontWeight: 300 },
+    { src: 'https://fonts.gstatic.com/s/roboto/v15/Uxzkqj-MIMWle-XP2pDNAA.ttf', fontWeight: 500 },
+    { src: 'https://fonts.gstatic.com/s/roboto/v15/bdHGHleUa-ndQCOrdpfxfw.ttf', fontWeight: 700 },
    ]});
 
    const styles = StyleSheet.create({
