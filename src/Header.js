@@ -7,8 +7,8 @@ import {
   HomeOutlined, 
   FilePdfOutlined, 
   BgColorsOutlined, 
-  MailOutlined, 
-  PrinterOutlined } from '@ant-design/icons';
+  MailOutlined 
+} from '@ant-design/icons';
 import { TwitterPicker } from 'react-color';
 import './Header.css';
 
@@ -81,10 +81,10 @@ class Header extends React.Component {
               <Link to="/" />
             </Menu.Item>
             <Menu.Item 
-              key="2" 
-              icon={<PrinterOutlined />} 
-              onClick={() => window.print()} 
-              title="Print Itinerary">
+              key="2"
+              title="Create PDF" 
+              icon={<FilePdfOutlined />} 
+              onClick={() => generatePDFDocument(title, lists, accentColor, headerImages, backgroundColor)}>
             </Menu.Item>
             <Menu.Item 
               key="3" 
@@ -102,14 +102,8 @@ class Header extends React.Component {
                   colors={colorsArray}
                   color={accentColor}
                   onChangeComplete={ ({ hex }) => handleColorUpdated(hex) }
-                />
+                />  
               </span>
-            </Menu.Item>
-            <Menu.Item 
-              key="5"
-              title="PDF Itinerary" 
-              icon={<FilePdfOutlined />} 
-              onClick={() => generatePDFDocument(title, lists, accentColor, headerImages, backgroundColor)}>
             </Menu.Item>
           </Menu>
           <h1 className="title"><span>{titleFirstWord}</span> {titleAfterFirstWord}</h1>
@@ -118,7 +112,6 @@ class Header extends React.Component {
       </View>
     )
   }
-
 }
 
 export default Header;
