@@ -26,15 +26,17 @@ const SupportGuide = (props) => {
     <Content style={{ padding: '20px 50px' }}>
       <a onclick={handleHomeClick} href="/">&larr; Go back home</a>
       <Layout className="site-layout-background" style={{ padding: '24px 0' }}>
-        <Sider className="site-layout-background" width={250}>
+        <Sider 
+          className="site-layout-background" >
           <Anchor>
             <Link href="#getting-started" title="Getting Started" className="parent-link">
-              <Link href="#example-board" title="Using the Example Board" />
-              <Link href="#blank-board" title="Using a Blank Board" />
+              <Link href="#example-board" title="Example Board" />
+              <Link href="#blank-board" title="Blank Board" />
               <Link href="#board-link" title="Find Your Board Link" />
             </Link>
             <Link href="#itinerary-options" title="Itinerary Options" className="parent-link">
-              <Link href="#itinerary-pdf-print" title="Download PDF and Print" />
+              <Link href="#itinerary-color" title="Accent Color"/>
+              <Link href="#itinerary-pdf" title="Download a PDF" />
               <Link href="#itinerary-email" title="Email Itinerary"/>
             </Link>
             <Link href="#feedback" title="Have Feedback?" className="parent-link"></Link>
@@ -43,7 +45,7 @@ const SupportGuide = (props) => {
         <Content style={{ padding: '0 50px', minHeight: 280 }}>
           <Title level={3} id="getting-started">Getting Started</Title>
 
-          <p>To help you get started quickly, we've created an sample Trello board for one of our favorite trips so that you can jump start your own trip planning and itinerary.</p>
+          <p>To help you get started quickly, we've created an sample Trello travel board for one of our favorite trips so that you can jump start your own travel itinerary.</p>
 
           <Title level={4} id="example-board">Using the Example Board</Title>
 
@@ -72,12 +74,12 @@ const SupportGuide = (props) => {
           <p>Instead of copying the example board, you are also welcome to use your own existing board as well. If you do this, make sure to install the <a href="https://help.trello.com/article/1067-using-the-custom-fields-power-up" target="_blank" rel="noopener noreferrer">Custom Fields Power Up</a> with the following custom field names and types:</p>
 
           <ul>
-            <li>Name: Start Time, Type: Date</li>
-            <li>Name: Address, Type: Text</li>
-            <li>Name: Link, Type: Text</li>
+            <li><strong>Name:</strong> Start Time <strong>Type:</strong> Date</li>
+            <li><strong>Name:</strong> Address <strong>Type:</strong> Text</li>
+            <li><strong>Name:</strong> Link <strong>Type:</strong> Text</li>
           </ul>
 
-          <p>Without these fields, Slick Itinerary will not be able to display that data in your generated itinerary.</p>
+          <p>Without these fields, Slick Itinerary will not be able to display that information in your generated itinerary.</p>
 
           <Divider />
 
@@ -87,7 +89,9 @@ const SupportGuide = (props) => {
 
           <Title level={4} id="board-link">Find Your Board Link</Title>
 
-          <p>Your board link is used to generate your itinerary. To find your board link, navigate to your board settings at <Text strong={true}>Show Menu > More > Link to this board</Text>:</p>
+          <p>Your board link is used to generate your itinerary. To find your board link, navigate to your board settings at <br />
+
+          <Text strong={true}>Show Menu > More > Link to this board</Text>:</p>
 
           <Divider />
 
@@ -105,21 +109,25 @@ const SupportGuide = (props) => {
 
           <p>The Slick Itinerary generated from your board has several options available.</p>
 
-          <Title level={4} id="itinerary-pdf-print">Generate a PDF or Print</Title>
+          <Title level={4} id="itinerary-color">Accent Color</Title>
 
-          <p>To generate a PDF of your itinerary for download, click the PDF icon on your itinerary and select <Text strong={true}>Save as PDF</Text> from the Destination options:</p>
+          <p>You can select a custom accent color for your itinerary. This color will apply across various elements on the web and PDF versions of your itinerary:</p>
+
+          <img src="/guide/accent-color.png" width="500" alt="Select an accent color" />
+
+          <Divider />
+
+          <Title level={4} id="itinerary-pdf">Download a PDF</Title>
+
+          <p>To generate a PDF of your itinerary, click the PDF icon:</p>
 
           <img src="/guide/pdf-print-button.png" width="500" alt="PDF download or print button" />
 
           <Divider />
 
-          <img src="/guide/save-pdf-destination.png" width="500" alt="PDF download destination option" />
-
-          <Divider />
-
           <Title level={4} id="itinerary-email">Email Itinerary</Title>
 
-          <p>By clicking the email icon on your itinerary, the system will automatically launch your default email client with your itinerary link in the email body. Make sure to update the email address to who you'd like to send the email to:</p>
+          <p>By clicking the email icon, the system will automatically launch your default email client with your itinerary link in the email body. Make sure to update the email address to who you'd like to send the email to:</p>
 
           <img src="/guide/email-itinerary.png" width="600" alt="Email itinerary" />
 
@@ -127,7 +135,7 @@ const SupportGuide = (props) => {
 
           <Title level={3} id="feedback">Have Feedback?</Title>
 
-          <p>Thank you for using the site and if you have any questions or feedback, please reach out on Twitter <a href="https://twitter.com/SlickItinerary">@SlickItinerary</a></p>
+          <p>Thank you for using the site! If you have any questions or feedback, please reach out on Twitter <a href="https://twitter.com/SlickItinerary">@SlickItinerary</a></p>
 
         </Content>
       </Layout>

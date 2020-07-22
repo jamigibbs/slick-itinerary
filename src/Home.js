@@ -36,18 +36,18 @@ class Home extends React.Component {
                 <div className="home-left-column">
                   <Title className="logo">Slick Itinerary</Title>
                   <Paragraph>
-                  Organize your trip using <a href="https://trello.com/">Trello</a> and turn it into a sharable, printable, beautiful travel itinerary instantly!
+                  Organize your trip using <a href="https://trello.com/" target="_blank" rel="noopener noreferrer">Trello</a> and turn it into a sharable, printable, beautiful travel itinerary instantly!
                   </Paragraph>
 
                   <Divider />
 
-                  <Text strong>Getting Started</Text>
+                  <Text strong>Quick Start</Text>
 
                   <Paragraph>
-                  Quick start by copying the <a href="https://trello.com/b/I0TyGYpi" target="_blank" rel="noopener noreferrer">example board</a> and enter the board link below to generate an itineray.
+                  Copy our <a href="https://trello.com/b/I0TyGYpi" target="_blank" rel="noopener noreferrer">example trip board</a> and modify it for your own trip. Then enter your board link below to generate an itineray.
                   </Paragraph>
 
-                  <Paragraph style={{marginTop: '20px'}}>Need more help? Check out the <Link to="guide">support guide</Link>.</Paragraph>
+                  <Paragraph type="secondary" style={{marginBottom: '20px'}}>Need more help? Check out the <Link to="guide">support guide</Link>.</Paragraph>
 
                   <LinkInput />
 
