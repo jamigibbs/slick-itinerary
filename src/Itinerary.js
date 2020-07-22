@@ -142,7 +142,12 @@ class Itinerary extends React.Component {
                     list.cards.push(card);
                   });
 
-                  console.log('itinerary', itinerary)
+                  // Set the page title to the itinerary name
+                  document.title = `${itinerary.name} | Slick Itinerary`;
+
+                  if (isLocalHost()) {
+                    console.log('itinerary', itinerary) 
+                  }
 
                   this.setState({
                     itinerary,

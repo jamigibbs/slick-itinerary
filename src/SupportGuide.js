@@ -17,6 +17,9 @@ if (!isLocalHost()) {
 const SupportGuide = (props) => {
   const [redirectHome, setRedirectHome] = useState(false);
 
+  // Set the page title to the itinerary name
+  document.title = `Support Guide | Slick Itinerary`;
+
   function handleHomeClick(event){
     event.preventDefault();
     setRedirectHome(true);
