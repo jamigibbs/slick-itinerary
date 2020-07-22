@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
+import { isLocalHost } from './utils';
+import ReactGA from 'react-ga';
 import SiteFooter from './SiteFooter';
 import { Layout, Anchor, Typography, Divider, BackTop } from 'antd';
 import './SupportGuide.css';
@@ -7,6 +9,10 @@ import './SupportGuide.css';
 const { Content, Footer, Sider } = Layout;
 const { Link } = Anchor;
 const { Title, Text } = Typography;
+
+if (!isLocalHost()) {
+  ReactGA.pageview(window.location.pathname + window.location.search);
+}
 
 const SupportGuide = (props) => {
   const [redirectHome, setRedirectHome] = useState(false);

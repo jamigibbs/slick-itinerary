@@ -1,5 +1,7 @@
 import React from 'react';
 import { BackTop } from 'antd';
+import { isLocalHost } from './utils';
+import ReactGA from 'react-ga';
 import Header from './Header';
 import LoadingSpinner from './LoadingSpinner';
 import ItineraryCards from'./ItineraryCards';
@@ -12,6 +14,10 @@ const TRELLO_API_ROOT = 'https://api.trello.com/1';
 const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
 const TRELLO_TOKEN = process.env.REACT_APP_TRELLO_TOKEN;
 const ACCENT_COLOR_KEY = 'si_accent_color';
+
+if (!isLocalHost()) {
+  ReactGA.pageview(window.location.pathname + window.location.search);
+}
 
 class Itinerary extends React.Component {
   state = {
@@ -28,6 +34,14 @@ class Itinerary extends React.Component {
 
   updateAccentColor(accentColor){
     this.setState({accentColor});
+
+    if (!isLocalHost()) {
+      ReactGA.event({
+        category: 'User',
+        action: 'Updated Color',
+        value: accentColor
+      });
+    }
 
     // Setting the selected color into local storage.
     const itineraryColorKey = ACCENT_COLOR_KEY + '_' + this.state.itinerary.shortLink;

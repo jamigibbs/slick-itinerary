@@ -1,5 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
+import { isLocalHost } from './utils';
 import Itinerary from './Itinerary';
 import SupportGuide from './SupportGuide';
 import Home from './Home';
@@ -8,6 +9,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import ReactGA from 'react-ga';
+
+if (!isLocalHost()) {
+  ReactGA.initialize('UA-3363703-56');
+}
 
 class App extends React.Component {
 

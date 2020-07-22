@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { isLocalHost } from './utils';
+import ReactGA from 'react-ga';
 import generatePDFDocument from './generatePDFDocument';
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 import { Layout, Menu } from 'antd';
@@ -16,11 +18,27 @@ class Header extends React.Component {
 
   handleColorPickerClick(){
     document.querySelector('.color-picker').classList.toggle('hidden');
+
+    if (!isLocalHost()) {
+      ReactGA.event({
+        category: 'User',
+        action: 'Updated Color',
+        value: window.location.href
+      });
+    }
   }
 
   handleShareClick(event){
     event.preventDefault();
-    console.log('share clicked', this.emailLink())
+
+    if (!isLocalHost()) {
+      ReactGA.event({
+        category: 'User',
+        action: 'Emailed Itinerary',
+        value: window.location.href
+      });
+    }
+
     window.location.href = this.emailLink();
   }
 

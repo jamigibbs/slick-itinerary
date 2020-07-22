@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { isLocalHost } from './utils';
+import ReactGA from 'react-ga';
 import LinkInput from './LinkInput';
 import BoardHistory from './BoardHistory';
 import SiteFooter from './SiteFooter';
@@ -9,6 +11,10 @@ import { Layout, Row, Col, Divider, Typography } from 'antd';
 const { Footer, Content } = Layout;
 const { Title, Paragraph, Text } = Typography;
 const BOARD_HISTORY_KEY = 'si_board_history';
+
+if (!isLocalHost()) {
+  ReactGA.pageview(window.location.pathname + window.location.search);
+}
 
 class Home extends React.Component {
   state = {

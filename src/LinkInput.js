@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { isLocalHost } from './utils';
+import ReactGA from 'react-ga';
 import { Input, Typography } from 'antd';
 import './LinkInput.css';
 
@@ -29,6 +31,14 @@ const LinkInput = (props) => {
   }
 
   async function updateBoardHistory(id){
+    if (!isLocalHost()) {
+      ReactGA.event({
+        category: 'User',
+        action: 'Submitted a board',
+        value: id
+      });
+    }
+
     let timestamp =  Date.now();
     const boardHistory = localStorage.getItem(BOARD_HISTORY_KEY);
 
