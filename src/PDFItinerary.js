@@ -50,7 +50,7 @@ const PDFItinerary = (props) => {
       color: '#424242',
       fontFamily: 'PT Serif',
       fontWeight: 700,
-      fontSize: 16,
+      fontSize: 18,
       marginBottom: 10,
       marginTop: 10,
       paddingHorizontal: 50
@@ -172,11 +172,12 @@ const PDFItinerary = (props) => {
   return (
       <Document>
           <Page size="LETTER">
-            <Text style={styles.banner}></Text>
 
             <View style={styles.titleParent}>
               <Text style={styles.title}>{title}</Text>
             </View>
+
+            <Text style={styles.banner}></Text>
 
               {headerImages ? 
                 <Image 
