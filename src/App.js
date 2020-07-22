@@ -1,6 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { isLocalHost } from './utils';
+import ReactGA from 'react-ga';
 import Itinerary from './Itinerary';
 import SupportGuide from './SupportGuide';
 import Home from './Home';
@@ -9,10 +10,10 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import ReactGA from 'react-ga';
 
 if (!isLocalHost()) {
-  ReactGA.initialize('UA-3363703-56');
+  const GA_TRACKING_ID = process.env.REACT_APP_GA_TRACKING_ID;
+  ReactGA.initialize(GA_TRACKING_ID);
 }
 
 class App extends React.Component {
@@ -23,9 +24,35 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/guide" component={SupportGuide} />
-            <Route path="/:boardShortLink" component={Itinerary} />
+            <Route 
+              exact 
+              path="/" 
+              render={props => { 
+                if (!isLocalHost()) {
+                  ReactGA.pageview(props.location.pathname); 
+                }
+                return <Home />;
+               }} 
+            />
+            <Route 
+              exact 
+              path="/guide" 
+              render={props => {
+                if (!isLocalHost()) {
+                  ReactGA.pageview(props.location.pathname);
+                }
+                return <SupportGuide />; 
+              }} 
+            />
+            <Route 
+              path="/:boardShortLink" 
+              render={props => {
+                if (!isLocalHost()) {
+                  ReactGA.pageview(props.location.pathname);
+                }
+                return <Itinerary props={props} />; 
+              }} 
+            />
           </Switch>
         </Router>
       </div>

@@ -35,7 +35,7 @@ const LinkInput = (props) => {
       ReactGA.event({
         category: 'User',
         action: 'Submitted a board',
-        value: id
+        label: id
       });
     }
 

@@ -18,14 +18,6 @@ class Header extends React.Component {
 
   handleColorPickerClick(){
     document.querySelector('.color-picker').classList.toggle('hidden');
-
-    if (!isLocalHost()) {
-      ReactGA.event({
-        category: 'User',
-        action: 'Updated Color',
-        value: window.location.href
-      });
-    }
   }
 
   handleShareClick(event){
@@ -35,7 +27,7 @@ class Header extends React.Component {
       ReactGA.event({
         category: 'User',
         action: 'Emailed Itinerary',
-        value: window.location.href
+        label: window.location.pathname
       });
     }
 

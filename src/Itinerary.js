@@ -15,10 +15,6 @@ const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
 const TRELLO_TOKEN = process.env.REACT_APP_TRELLO_TOKEN;
 const ACCENT_COLOR_KEY = 'si_accent_color';
 
-if (!isLocalHost()) {
-  ReactGA.pageview(window.location.pathname + window.location.search);
-}
-
 class Itinerary extends React.Component {
   state = {
     isLoading: true,
@@ -28,7 +24,8 @@ class Itinerary extends React.Component {
   }
 
   componentDidMount() {
-    const boardShortLink = this.props.match.params.boardShortLink;
+    const { props } = this.props;
+    const boardShortLink = props.match.params.boardShortLink;
     this.fetchItinerary(boardShortLink);
   }
 
@@ -39,7 +36,7 @@ class Itinerary extends React.Component {
       ReactGA.event({
         category: 'User',
         action: 'Updated Color',
-        value: accentColor
+        label: accentColor
       });
     }
 
