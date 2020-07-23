@@ -30,8 +30,8 @@ class Home extends React.Component {
       <Layout>
         <div className="flex-wrapper">
         <Layout>
-          <Content>
-            <Row>
+          <Content style={{position: 'relative'}}>
+            <Row className="content-row">
               <Col xs={{ span: 24, order: 2 }} sm={{ span: 24, order: 2 }} md={{ span: 12, order: 1 }} className="home-left-column-wrap">
                 <div className="home-left-column">
                   <Title className="logo">Slick Itinerary</Title>

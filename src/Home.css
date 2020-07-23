@@ -5,6 +5,14 @@
   font-weight: 700;
 }
 
+.ant-row.content-row {
+  height: 100%;
+  width: 100%;
+  position: absolute!important;
+  right: 0;
+  top: 0;
+}
+
 .home-left-column-wrap {
   background-color: #ffffff;
   padding: 20px 50px 50px 50px;
@@ -14,7 +22,6 @@
 @media (min-width: 1200px) {
   .home-left-column-wrap {
     padding: 0;
-    height: 100vh;
   }
   .home-left-column {
     left: 50%;
