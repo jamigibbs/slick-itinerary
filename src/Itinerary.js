@@ -29,6 +29,10 @@ class Itinerary extends React.Component {
     this.fetchItinerary(boardShortLink);
   }
 
+  handleLoadingIndicator(bool){
+    this.setState({isLoading: bool})
+  }
+
   updateAccentColor(accentColor){
     this.setState({accentColor});
 
@@ -177,6 +181,7 @@ class Itinerary extends React.Component {
                     title={itinerary.name} 
                     lists={itinerary.lists} 
                     accentColor={this.state.accentColor}
+                    handleLoadingIndicator={(bool) => this.handleLoadingIndicator(bool)}
                     handleColorUpdated={(hex) => this.updateAccentColor(hex)}/>
           }
 

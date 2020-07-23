@@ -2,7 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { isLocalHost } from './utils';
 import ReactGA from 'react-ga';
-import generatePDFDocument from './generatePDFDocument';
+import PDFItinerary from "./PDFItinerary";
+import { saveAs } from "file-saver";
+import { pdf } from "@react-pdf/renderer";
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 import { Layout, Menu } from 'antd';
 import { 
@@ -41,7 +43,28 @@ class Header extends React.Component {
       body: `I created an itinerary for our trip and I\'d like to share it with you: ${window.location.href}`
     }
     return `mailto:enteranemail?subject=${email.subject}&body=${email.body}`;
-  } 
+  }
+
+  async generatePDF(){
+    this.props.handleLoadingIndicator(true);
+
+    const {title, lists, accentColor, headerImages, backgroundColor} = this.props;
+    const itinerary = <PDFItinerary title={title} lists={lists} accentColor={accentColor} headerImages={headerImages} backgroundColor={backgroundColor} />;
+    const blobPdf = await pdf(itinerary);
+    blobPdf.updateContainer(itinerary);
+
+    const result = await blobPdf.toBlob();
+    this.props.handleLoadingIndicator(false);
+    saveAs(result, `${title}.pdf`);
+
+    if (!isLocalHost()) {
+      ReactGA.event({
+        category: 'User',
+        action: 'Generated PDF',
+        label: window.location.pathname
+      });
+    }
+  }
 
   render() {
     const { 
@@ -94,7 +117,7 @@ class Header extends React.Component {
               key="2"
               title="Create PDF" 
               icon={<FilePdfOutlined />} 
-              onClick={() => generatePDFDocument(title, lists, accentColor, headerImages, backgroundColor)}>
+              onClick={() => this.generatePDF()}>
             </Menu.Item>
             <Menu.Item 
               key="3" 
