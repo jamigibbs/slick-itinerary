@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import LinkInput from './LinkInput';
-import BoardHistory from './BoardHistory';
-import SiteFooter from './SiteFooter';
+import LinkInput from '../LinkInput';
+import BoardHistory from '../BoardHistory';
+import SiteFooter from '../SiteFooter';
 import './Home.css';
 import { Layout, Row, Col, Divider, Typography } from 'antd';
 

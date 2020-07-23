@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { isLocalHost } from './utils';
+import { isLocalHost } from '../../utils';
 import ReactGA from 'react-ga';
-import PDFItinerary from "./PDFItinerary";
+import PDFItinerary from "../PDFItinerary";
 import { saveAs } from "file-saver";
 import { pdf } from "@react-pdf/renderer";
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';

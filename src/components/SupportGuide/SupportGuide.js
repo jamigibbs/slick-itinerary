@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
-import { isLocalHost } from './utils';
+import { isLocalHost } from '../../utils';
 import ReactGA from 'react-ga';
-import SiteFooter from './SiteFooter';
+import SiteFooter from '../SiteFooter';
 import { Layout, Anchor, Typography, Divider, BackTop } from 'antd';
 import './SupportGuide.css';
 

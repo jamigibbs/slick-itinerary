@@ -1,6 +1,6 @@
 import React from 'react';
 import './ItineraryCards.css';
-import ItineraryCard from'./ItineraryCard';
+import ItineraryCard from'../ItineraryCard';
 import { Divider } from 'antd';
 
 class ItineraryCards extends React.Component {

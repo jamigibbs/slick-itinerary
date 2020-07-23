@@ -2,9 +2,9 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { isLocalHost } from './utils';
 import ReactGA from 'react-ga';
-import Itinerary from './Itinerary';
-import SupportGuide from './SupportGuide';
-import Home from './Home';
+import Itinerary from './components/Itinerary';
+import SupportGuide from './components/SupportGuide';
+import Home from './components/Home';
 import {
   BrowserRouter as Router,
   Switch,

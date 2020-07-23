@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { isLocalHost } from './utils';
+import { isLocalHost } from '../../utils';
 import ReactGA from 'react-ga';
 import { Input, Typography } from 'antd';
 import './LinkInput.css';

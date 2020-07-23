@@ -1,10 +1,10 @@
 import React from 'react';
 import { BackTop } from 'antd';
-import { isLocalHost } from './utils';
+import { isLocalHost } from '../../utils';
 import ReactGA from 'react-ga';
-import Header from './Header';
-import LoadingSpinner from './LoadingSpinner';
-import ItineraryCards from'./ItineraryCards';
+import Header from '../Header';
+import LoadingSpinner from '../LoadingSpinner';
+import ItineraryCards from'../ItineraryCards';
 import './Itinerary.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcase} from '@fortawesome/free-solid-svg-icons'
