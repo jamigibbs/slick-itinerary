@@ -56,7 +56,7 @@ class Home extends React.Component {
                   { isBoardHistory && <BoardHistory data={boardHistory} /> }
                 </div>
               </Col>
-              <Col xs={{ span: 24, order: 1 }} sm={{ span: 24, order: 1 }} md={{ span: 12, order: 2 }} >
+              <Col className="home-right-column" xs={{ span: 24, order: 1 }} sm={{ span: 24, order: 1 }} md={{ span: 12, order: 2 }} >
                 <img src="home-bg.svg" alt="woman riding bike" />
               </Col>
             </Row>
