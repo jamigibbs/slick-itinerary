@@ -5,10 +5,10 @@ import BoardHistory from '../BoardHistory';
 import SiteFooter from '../SiteFooter';
 import './Home.css';
 import { Layout, Row, Col, Divider, Typography } from 'antd';
+import { BOARD_HISTORY_KEY, TRELLO_URL } from '../../constants';
 
 const { Footer, Content } = Layout;
 const { Title, Paragraph, Text } = Typography;
-const BOARD_HISTORY_KEY = 'si_board_history';
 
 class Home extends React.Component {
   state = {
@@ -36,7 +36,7 @@ class Home extends React.Component {
                 <div className="home-left-column">
                   <Title className="logo">Slick Itinerary</Title>
                   <Paragraph>
-                  Organize your trip using <a href="https://trello.com/" target="_blank" rel="noopener noreferrer">Trello</a> and turn it into a sharable, printable, beautiful travel itinerary instantly!
+                  Organize your trip using <a href={TRELLO_URL} target="_blank" rel="noopener noreferrer">Trello</a> and turn it into a sharable, printable, beautiful travel itinerary instantly!
                   </Paragraph>
 
                   <Divider />
@@ -44,7 +44,7 @@ class Home extends React.Component {
                   <Text strong>Quick Start</Text>
 
                   <Paragraph>
-                  Copy our <a href="https://trello.com/b/I0TyGYpi" target="_blank" rel="noopener noreferrer">example trip board</a> and modify it for your own trip. Then enter your board link below to generate an itineray.
+                  Copy our <a href={`${TRELLO_URL}/b/I0TyGYpi`} target="_blank" rel="noopener noreferrer">example trip board</a> and modify it for your own trip. Then enter your board link below to generate an itineray.
                   </Paragraph>
 
                   <Paragraph type="secondary" style={{marginBottom: '20px'}}>Need more help? Check out the <Link to="guide">support guide</Link>.</Paragraph>

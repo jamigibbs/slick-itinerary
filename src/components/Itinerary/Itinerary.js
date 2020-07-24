@@ -9,11 +9,7 @@ import './Itinerary.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcase} from '@fortawesome/free-solid-svg-icons'
 import { MehOutlined } from '@ant-design/icons';
-
-const TRELLO_API_ROOT = 'https://api.trello.com/1';
-const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
-const TRELLO_TOKEN = process.env.REACT_APP_TRELLO_TOKEN;
-const ACCENT_COLOR_KEY = 'si_accent_color';
+import { TRELLO_API_ROOT, TRELLO_KEY, TRELLO_TOKEN, ACCENT_COLOR_KEY } from '../../constants';
 
 class Itinerary extends React.Component {
   state = {

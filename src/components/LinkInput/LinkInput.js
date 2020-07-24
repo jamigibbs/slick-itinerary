@@ -4,12 +4,9 @@ import { isLocalHost } from '../../utils';
 import ReactGA from 'react-ga';
 import { Input, Typography } from 'antd';
 import './LinkInput.css';
+import { TRELLO_API_ROOT, TRELLO_KEY, TRELLO_TOKEN, BOARD_HISTORY_KEY } from '../../constants';
 
 const { Text } = Typography;
-const BOARD_HISTORY_KEY = 'si_board_history';
-const TRELLO_API_ROOT = 'https://api.trello.com/1';
-const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
-const TRELLO_TOKEN = process.env.REACT_APP_TRELLO_TOKEN;
 
 const LinkInput = (props) => {
   const [link, setLink] = useState('');
