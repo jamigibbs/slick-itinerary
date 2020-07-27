@@ -6,7 +6,7 @@ const morgan = require("morgan");
 
 const port = process.env.PORT || 5000;
 
-require("dotenv").config();
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const TRELLO_API_ROOT = 'https://api.trello.com/1';
 const TRELLO_KEY = process.env.REACT_APP_TRELLO_KEY;
