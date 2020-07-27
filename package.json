@@ -29,7 +29,7 @@
     "remove-markdown": "^0.3.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "server": "node server.js",
     "build": "cross-env NODE_ENV=production react-scripts build",
     "test": "react-scripts test",
