@@ -14,12 +14,14 @@ const Home = (props) => {
   const [boardHistory, setBoardHistory] = useState([]);
 
   useEffect(() => {
-    getBoardHistory();
-  });
+    setBoardHistoryFromLocalStorage();
+  }, []);
 
-  const getBoardHistory = () => {
+  const setBoardHistoryFromLocalStorage = () => {
     const boardHistory = JSON.parse(localStorage.getItem(BOARD_HISTORY_KEY));
-    setBoardHistory(boardHistory);
+    if (boardHistory) {
+      setBoardHistory(boardHistory);
+    }
   }
 
   const isBoardHistory = boardHistory ? boardHistory.length > 0 : false;
