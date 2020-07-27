@@ -29,8 +29,10 @@ class Itinerary extends React.Component {
       .then((itinerary) => {
         if (isLocalHost()) console.log('itinerary', itinerary);
         const itineraryColorKey = ACCENT_COLOR_KEY + '_' + itinerary.shortLink;
-        const accentColor = localStorage.getItem(itineraryColorKey);
-        this.setState({itinerary, accentColor, isLoading: false});
+        if (itineraryColorKey) {
+          const accentColor = localStorage.getItem(itineraryColorKey);
+          this.setState({itinerary, accentColor, isLoading: false});
+        }
       })
   }
 
