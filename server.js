@@ -155,6 +155,14 @@ async function getBoardCards(boardShortLink){
   }
 }
 
+// Default route
+app.use(function(req, res){
+  return res.status(400).json({
+    state: 'error',
+    message: 'nothing found'
+  });
+});
+
 if (process.env.NODE_ENV == "production") {
   app.use(express.static(path.join(__dirname, "build")));
 
