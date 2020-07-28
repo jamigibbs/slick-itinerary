@@ -60,46 +60,46 @@ app.get('/api/board/:boardShortLink', async function (req, res) {
           batchedUrls.push(batch);
           batch = [];
         }
+      }
 
-        let requests = batchedUrls.map(async (urls) => {
-          // return fetch(`${TRELLO_API_ROOT}/batch?key=${TRELLO_KEY}&token=${TRELLO_TOKEN}&urls=${urls}`)
-          return await getTrelloBatch(urls);
-        });
+      let requests = batchedUrls.map((urls) => {
+        return axios.get(`${TRELLO_API_ROOT}/batch?key=${TRELLO_KEY}&token=${TRELLO_TOKEN}&urls=${urls}`)
+      });
 
-        Promise.all(requests)
-          .then(responses => Promise.all(responses.map(response => response.json())))
-          .then(batchedData => {
-            // Combine the batched array responses into a single array.
-            const mergedCardsWithCovers = [].concat.apply([], batchedData);
+      await Promise.all(requests)
+        .then(responses => Promise.all(responses.map(({data}) => data)))
+        .then(batchedData => {
 
-            boardCards.cards.forEach((card) => {
-              // Finding which list the card goes and putting it into that list.
-              const list = itinerary.lists.find((item) => {
-                return item.id === card.idList
-              });
+          // Combine the batched array responses into a single array.
+          const mergedCardsWithCovers = [].concat.apply([], batchedData);
 
-              // Finding the card cover image url and adding it to the card.
-              const cover = mergedCardsWithCovers.find((cardWithCover) => {
-                return card.cover.idAttachment === cardWithCover[200].id;
-              });
-              if (cover) card.cover.url = cover[200].url;
-        
-              // Mapping the custom field name to the custom field value.
-              card.customFieldItems.map((fieldItem) => {
-                const matchingCustomField = customFields.find((field) => {
-                  return field.id === fieldItem.idCustomField
-                });
-                if (matchingCustomField) fieldItem.name = matchingCustomField.name;
-                return fieldItem;
-              });
-        
-              list.cards.push(card);
+          boardCards.cards.forEach((card) => {
+            // Finding which list the card goes and putting it into that list.
+            const list = itinerary.lists.find((item) => {
+              return item.id === card.idList
             });
 
-            return res.status(200).json(itinerary);
+            // Finding the card cover image url and adding it to the card.
+            const cover = mergedCardsWithCovers.find((cardWithCover) => {
+              return card.cover.idAttachment === cardWithCover[200].id;
+            });
+
+            if (cover) card.cover.url = cover[200].url;
+      
+            // Mapping the custom field name to the custom field value.
+            card.customFieldItems.map((fieldItem) => {
+              const matchingCustomField = customFields.find((field) => {
+                return field.id === fieldItem.idCustomField
+              });
+              if (matchingCustomField) fieldItem.name = matchingCustomField.name;
+              return fieldItem;
+            });
+      
+            list.cards.push(card);
           });
-          return;
-      }
+        });
+
+      return res.status(200).json(itinerary);
     }
   } catch(error) {
     return res.status(400).send(error);
