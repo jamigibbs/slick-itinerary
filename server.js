@@ -48,23 +48,7 @@ app.get('/api/board/:boardShortLink', async function (req, res) {
       });
 
       // Creating our batched request array for fetching cover urls. 
-      const batchedUrls = [];
-      let batch = [];
-
-      for (let i = 0; i < cardsWithCovers.length; i++) {
-        // if it's the 10th item, add array to batchedUrls and reset the batch array.
-        const url = `/cards/${cardsWithCovers[i].id}/attachments/${cardsWithCovers[i].cover.idAttachment}`;
-        batch.push(url);
-        // If we have our max 10 request urls, or it's the last item, push the request url group and reset batch array.
-        if (batch.length === 10 || i === cardsWithCovers.length - 1) {
-          batchedUrls.push(batch);
-          batch = [];
-        }
-      }
-
-      let requests = batchedUrls.map((urls) => {
-        return axios.get(`${TRELLO_API_ROOT}/batch?key=${TRELLO_KEY}&token=${TRELLO_TOKEN}&urls=${urls}`)
-      });
+      const requests = await createCardCoverBatch(cardsWithCovers);
 
       await Promise.all(requests)
         .then(responses => Promise.all(responses.map(({data}) => data)))
@@ -105,6 +89,28 @@ app.get('/api/board/:boardShortLink', async function (req, res) {
     return res.status(400).send(error);
   }
 });
+
+async function createCardCoverBatch(cardsWithCovers){
+  const batchedUrls = [];
+  let batch = [];
+
+  for (let i = 0; i < cardsWithCovers.length; i++) {
+    // if it's the 10th item, add array to batchedUrls and reset the batch array.
+    const url = `/cards/${cardsWithCovers[i].id}/attachments/${cardsWithCovers[i].cover.idAttachment}`;
+    batch.push(url);
+    // If we have our max 10 request urls, or it's the last item, push the request url group and reset batch array.
+    if (batch.length === 10 || i === cardsWithCovers.length - 1) {
+      batchedUrls.push(batch);
+      batch = [];
+    }
+  }
+
+  let requests = batchedUrls.map(async (urls) => {
+    return await axios.get(`${TRELLO_API_ROOT}/batch?key=${TRELLO_KEY}&token=${TRELLO_TOKEN}&urls=${urls}`)
+  });
+
+  return requests;
+}
 
 async function getTrelloBoards(boardShortLink){
   try {
