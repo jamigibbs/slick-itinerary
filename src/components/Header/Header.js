@@ -5,24 +5,23 @@ import ReactGA from 'react-ga';
 import PDFItinerary from "../PDFItinerary";
 import { saveAs } from "file-saver";
 import { pdf } from "@react-pdf/renderer";
-import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
+import { TwitterPicker } from 'react-color';
 import { Layout, Menu } from 'antd';
+import './Header.css';
 import { 
   HomeOutlined, 
   FilePdfOutlined, 
   BgColorsOutlined, 
   MailOutlined 
 } from '@ant-design/icons';
-import { TwitterPicker } from 'react-color';
-import './Header.css';
 
-class Header extends React.Component {
+const Header = (props) => {
 
-  handleColorPickerClick(){
+  const handleColorPickerClick = () => {
     document.querySelector('.color-picker').classList.toggle('hidden');
   }
 
-  handleShareClick(event){
+  const handleShareClick = (event) => {
     event.preventDefault();
 
     if (!isLocalHost()) {
@@ -33,11 +32,11 @@ class Header extends React.Component {
       });
     }
 
-    window.location.href = this.emailLink();
+    window.location.href = emailLink();
   }
 
-  emailLink() {
-    const { title } = this.props;
+  const emailLink = () => {
+    const { title } = props;
     const email = {
       subject: `Check out the itinerary for ${title}`,
       body: `I created an itinerary for our trip and I\'d like to share it with you: ${window.location.href}`
@@ -45,16 +44,16 @@ class Header extends React.Component {
     return `mailto:enteranemail?subject=${email.subject}&body=${email.body}`;
   }
 
-  async generatePDF(){
-    this.props.handleLoadingIndicator(true);
+  const generatePDF= async () => {
+    props.handleLoadingIndicator(true);
 
-    const {title, lists, accentColor, headerImages, backgroundColor} = this.props;
+    const {title, lists, accentColor, headerImages, backgroundColor} = props;
     const itinerary = <PDFItinerary title={title} lists={lists} accentColor={accentColor} headerImages={headerImages} backgroundColor={backgroundColor} />;
     const blobPdf = await pdf(itinerary);
     blobPdf.updateContainer(itinerary);
 
     const result = await blobPdf.toBlob();
-    this.props.handleLoadingIndicator(false);
+    props.handleLoadingIndicator(false);
     saveAs(result, `${title}.pdf`);
 
     if (!isLocalHost()) {
@@ -66,85 +65,81 @@ class Header extends React.Component {
     }
   }
 
-  render() {
-    const { 
-      headerImages, 
-      backgroundColor, 
-      title, 
-      lists,
-      handleColorUpdated, 
-      accentColor } = this.props;
-    let bg = null;
-    let headerStyle = {};
+  const { 
+    headerImages, 
+    backgroundColor, 
+    title, 
+    lists,
+    handleColorUpdated, 
+    accentColor } = props;
+  let bg = null;
+  let headerStyle = {};
 
-    if (headerImages) {
-      bg = headerImages[5].url;
-      headerStyle = {
-        background: `url(${bg}) no-repeat center center fixed`,
-        backgroundSize: 'cover'
-      }
-    } else {
-      headerStyle = {
-        backgroundColor: backgroundColor
-      }
+  if (headerImages) {
+    bg = headerImages[5].url;
+    headerStyle = {
+      background: `url(${bg}) no-repeat center center fixed`,
+      backgroundSize: 'cover'
     }
-
-    let titleAfterFirstWord = null;
-    let titleFirstWord = null;
-
-    if (title) {
-      const titleArray = title.split(' ');
-      titleFirstWord = titleArray[0];
-      titleArray.shift();
-      titleAfterFirstWord = titleArray.join(' ');
+  } else {
+    headerStyle = {
+      backgroundColor: backgroundColor
     }
-
-    const colorsArray = ['#E1474A', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#263238', '#FF6900', '#F78DA7', '#9900EF'];
-
-    return (
-      <View>
-      <Layout className="layout">
-        <header className='display-header-bg' style={headerStyle}>
-          <Menu theme="dark" mode="horizontal">
-            <Menu.Item 
-              key="1" 
-              icon={<HomeOutlined />} 
-              title="Home">
-              <span className="hide-screen">Home</span>
-              <Link to="/" />
-            </Menu.Item>
-            <Menu.Item 
-              key="2"
-              title="Create PDF" 
-              icon={<FilePdfOutlined />} 
-              onClick={() => this.generatePDF()}>
-            </Menu.Item>
-            <Menu.Item 
-              key="3" 
-              icon={<MailOutlined 
-              onClick={(event) => this.handleShareClick(event)} />} 
-              title="Email Itinerary">
-            </Menu.Item>
-            <Menu.Item 
-              key="4" 
-              icon={<BgColorsOutlined 
-              onClick={this.handleColorPickerClick} />} 
-              title="Highlight Color">
-              <span className="color-picker hidden">
-                <TwitterPicker
-                  colors={colorsArray}
-                  color={accentColor}
-                  onChangeComplete={ ({ hex }) => handleColorUpdated(hex) }
-                />  
-              </span>
-            </Menu.Item>
-          </Menu>
-          <h1 className="title"><span>{titleFirstWord}</span> {titleAfterFirstWord}</h1>
-        </header>
-      </Layout>
-      </View>
-    )
   }
+
+  let titleAfterFirstWord = null;
+  let titleFirstWord = null;
+
+  if (title) {
+    const titleArray = title.split(' ');
+    titleFirstWord = titleArray[0];
+    titleArray.shift();
+    titleAfterFirstWord = titleArray.join(' ');
+  }
+
+  const colorsArray = ['#E1474A', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#263238', '#FF6900', '#F78DA7', '#9900EF'];
+
+  return (
+    <Layout className="layout">
+      <header className='display-header-bg' style={headerStyle}>
+        <Menu theme="dark" mode="horizontal">
+          <Menu.Item 
+            key="1" 
+            icon={<HomeOutlined />} 
+            title="Home">
+            <span className="hide-screen">Home</span>
+            <Link to="/" />
+          </Menu.Item>
+          <Menu.Item 
+            key="2"
+            title="Create PDF" 
+            icon={<FilePdfOutlined />} 
+            onClick={() => generatePDF()}>
+          </Menu.Item>
+          <Menu.Item 
+            key="3" 
+            icon={<MailOutlined 
+            onClick={(event) => handleShareClick(event)} />} 
+            title="Email Itinerary">
+          </Menu.Item>
+          <Menu.Item 
+            key="4" 
+            icon={<BgColorsOutlined 
+            onClick={handleColorPickerClick} />} 
+            title="Highlight Color">
+            <span className="color-picker hidden">
+              <TwitterPicker
+                colors={colorsArray}
+                color={accentColor}
+                onChangeComplete={ ({ hex }) => handleColorUpdated(hex) }
+              />  
+            </span>
+          </Menu.Item>
+        </Menu>
+        <h1 className="title"><span>{titleFirstWord}</span> {titleAfterFirstWord}</h1>
+      </header>
+    </Layout>
+  )
 }
 
 export default Header;
