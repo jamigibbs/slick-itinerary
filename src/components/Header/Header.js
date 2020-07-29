@@ -6,7 +6,7 @@ import PDFItinerary from "../PDFItinerary";
 import { saveAs } from "file-saver";
 import { pdf } from "@react-pdf/renderer";
 import { TwitterPicker } from 'react-color';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Tooltip } from 'antd';
 import './Header.css';
 import { 
   HomeOutlined, 
@@ -111,20 +111,17 @@ const Header = (props) => {
           </Menu.Item>
           <Menu.Item 
             key="2"
-            title="Create PDF" 
-            icon={<FilePdfOutlined />} 
-            onClick={() => generatePDF()}>
+            title="Create PDF"
+            icon={<Tooltip title="Generate a PDF" color="blue" placement="bottom"><FilePdfOutlined /></Tooltip>} onClick={() => generatePDF()}>
           </Menu.Item>
           <Menu.Item 
             key="3" 
-            icon={<MailOutlined 
-            onClick={(event) => handleShareClick(event)} />} 
+            icon={<Tooltip title="Email this itinerary" color="blue" placement="bottom"><MailOutlined onClick={(event) => handleShareClick(event)} /></Tooltip>} 
             title="Email Itinerary">
           </Menu.Item>
           <Menu.Item 
             key="4" 
-            icon={<BgColorsOutlined 
-            onClick={handleColorPickerClick} />} 
+            icon={<Tooltip title="Select an accent color" color="blue" placement="bottom"><BgColorsOutlined onClick={handleColorPickerClick} /></Tooltip>} 
             title="Highlight Color">
             <span className="color-picker hidden">
               <TwitterPicker
