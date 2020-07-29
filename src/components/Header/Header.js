@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { isLocalHost } from '../../utils';
+import { isProduction } from '../../utils';
 import ReactGA from 'react-ga';
 import PDFItinerary from "../PDFItinerary";
 import { saveAs } from "file-saver";
@@ -24,7 +24,7 @@ const Header = (props) => {
   const handleShareClick = (event) => {
     event.preventDefault();
 
-    if (!isLocalHost()) {
+    if (isProduction) {
       ReactGA.event({
         category: 'User',
         action: 'Emailed Itinerary',
@@ -56,7 +56,7 @@ const Header = (props) => {
     props.handleLoadingIndicator(false);
     saveAs(result, `${title}.pdf`);
 
-    if (!isLocalHost()) {
+    if (isProduction) {
       ReactGA.event({
         category: 'User',
         action: 'Generated PDF',

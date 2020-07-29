@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { isLocalHost } from './utils';
+import { isProduction } from './utils';
 import ReactGA from 'react-ga';
 import Itinerary from './components/Itinerary';
 import SupportGuide from './components/SupportGuide';
@@ -11,7 +11,7 @@ import {
   Route
 } from "react-router-dom";
 
-if (!isLocalHost()) {
+if (isProduction) {
   const GA_TRACKING_ID = process.env.REACT_APP_GA_TRACKING_ID;
   ReactGA.initialize(GA_TRACKING_ID);
 }
@@ -28,7 +28,7 @@ class App extends React.Component {
               exact 
               path="/" 
               render={props => { 
-                if (!isLocalHost()) {
+                if (isProduction) {
                   ReactGA.pageview(props.location.pathname); 
                 }
                 return <Home />;
@@ -38,7 +38,7 @@ class App extends React.Component {
               exact 
               path="/guide" 
               render={props => {
-                if (!isLocalHost()) {
+                if (isProduction) {
                   ReactGA.pageview(props.location.pathname);
                 }
                 return <SupportGuide />; 
@@ -47,7 +47,7 @@ class App extends React.Component {
             <Route 
               path="/:boardShortLink" 
               render={props => {
-                if (!isLocalHost()) {
+                if (isProduction) {
                   ReactGA.pageview(props.location.pathname);
                 }
                 return <Itinerary props={props} />; 

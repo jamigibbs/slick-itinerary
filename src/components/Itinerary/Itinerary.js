@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BackTop } from 'antd';
-import { isLocalHost } from '../../utils';
+import { isLocalHost, isProduction } from '../../utils';
 import ReactGA from 'react-ga';
 import Header from '../Header';
 import LoadingSpinner from '../LoadingSpinner';
@@ -28,7 +28,7 @@ const Itinerary = (props) => {
     fetch(`/api/board/${boardShortLink}`)
       .then((response) => response.json())
       .then((itinerary) => {
-        if (isLocalHost()) console.log('itinerary', itinerary);
+        if (isLocalHost) console.log('itinerary', itinerary);
         
         const itineraryColorKey = ACCENT_COLOR_KEY + '_' + itinerary.shortLink;
         const accentColor = localStorage.getItem(itineraryColorKey);
@@ -50,7 +50,7 @@ const Itinerary = (props) => {
     // this.setState({accentColor});
     setAccentColor(accentColor);
 
-    if (!isLocalHost()) {
+    if (isProduction) {
       ReactGA.event({
         category: 'User',
         action: 'Updated Color',

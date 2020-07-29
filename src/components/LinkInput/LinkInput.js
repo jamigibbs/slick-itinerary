@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { isLocalHost } from '../../utils';
+import { isProduction } from '../../utils';
 import ReactGA from 'react-ga';
 import { Input, Typography } from 'antd';
 import './LinkInput.css';
@@ -28,7 +28,7 @@ const LinkInput = (props) => {
   }
 
   async function updateBoardHistory(id){
-    if (!isLocalHost()) {
+    if (isProduction) {
       ReactGA.event({
         category: 'User',
         action: 'Submitted a board',
