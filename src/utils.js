@@ -9,5 +9,5 @@ export const isLocalHost = Boolean(
 );
 
 export const isProduction = Boolean(
-  process.env === 'production'
+  process.env.NODE_ENV === 'production'
 )
