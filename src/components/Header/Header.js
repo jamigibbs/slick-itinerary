@@ -107,7 +107,7 @@ const Header = (props) => {
             icon={<HomeOutlined />} 
             title="Home">
             <span className="hide-screen">Home</span>
-            <Link to="/" />
+            <Link to="/" aria-label="Back to home" />
           </Menu.Item>
           <Menu.Item 
             key="2"

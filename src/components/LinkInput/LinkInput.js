@@ -81,6 +81,7 @@ const LinkInput = (props) => {
   return (
     <div>
       <Input 
+        aria-label="Enter Trello board link"
         size="large" 
         type="text" 
         value={link}

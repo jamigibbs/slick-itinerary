@@ -13,7 +13,7 @@ const BoardHistory = (props) => {
     <div>
       <List
         size="small"
-        header={<h4>Your Recent Itineraries</h4>}
+        header={<h2 className="history-header">Your Recent Itineraries</h2>}
         dataSource={data}
         renderItem={item => (
           <List.Item>
@@ -21,7 +21,7 @@ const BoardHistory = (props) => {
               <Link to={item.id}>{item.name}</Link>
             </Tooltip>
             <Tooltip title={`${item.name} Trello board`} color="blue" placement="right">
-              <a href={`https://trello.com/b/${item.id}`} target="_blank" rel="noopener noreferrer"> 
+              <a href={`https://trello.com/b/${item.id}`} aria-label={`Trello board with ID ${item.id}`} target="_blank" rel="noopener noreferrer"> 
                 <img src="trello-logo.svg" alt="Trello Logo" width="15" />
               </a>
             </Tooltip>

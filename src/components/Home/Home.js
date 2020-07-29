@@ -36,7 +36,7 @@ const Home = (props) => {
               <div className="home-left-column">
                 <Title className="logo">Slick Itinerary</Title>
                 <Paragraph>
-                Organize your trip using <a href={TRELLO_URL} target="_blank" rel="noopener noreferrer">Trello</a> and turn it into a sharable, printable, beautiful travel itinerary instantly!
+                Organize your trip using Trello and turn it into a sharable, printable, beautiful travel itinerary instantly!
                 </Paragraph>
 
                 <Divider />
@@ -44,10 +44,10 @@ const Home = (props) => {
                 <Text strong>Quick Start</Text>
 
                 <Paragraph>
-                Copy our <a href={`${TRELLO_URL}/b/I0TyGYpi`} target="_blank" rel="noopener noreferrer">example trip board</a> and modify it for your own trip. Then enter your board link below to generate an itineray.
+                Copy our <a href={`${TRELLO_URL}/b/I0TyGYpi`} aria-label="Example board" target="_blank" rel="noopener noreferrer">example trip board</a> and modify it for your own trip. Then enter your board link below to generate an itineray.
                 </Paragraph>
 
-                <Paragraph type="secondary" style={{marginBottom: '20px'}}>Need more help? Check out the <Link to="guide">support guide</Link>.</Paragraph>
+                <Paragraph style={{marginBottom: '20px'}}>Need more help? Check out the <Link to="guide">support guide</Link>.</Paragraph>
 
                 <LinkInput />
 

@@ -119,12 +119,12 @@ const PDFItinerary = (props) => {
       border: '1 solid #ffadd2'
     },
     cardLabelblue: {
-      color: '#1890ff',
+      color: '#0055B3',
       backgroundColor: '#e6f7ff',
       border: '1 solid #91d5ff'
     },
     cardLabelteal: {
-      color: '#1890ff',
+      color: '#0055B3',
       backgroundColor: '#e6f7ff',
       border: '1 solid #91d5ff'
     },
