@@ -68,8 +68,7 @@ const Header = (props) => {
   const { 
     headerImages, 
     backgroundColor, 
-    title, 
-    lists,
+    title,
     handleColorUpdated, 
     accentColor } = props;
   let bg = null;
