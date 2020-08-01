@@ -34,16 +34,18 @@ const PDFItinerary = (props) => {
       width: 620
     },
     titleParent: {
-  	  display: 'flex',
-  	  flexDirection: 'column',
-  	  height: 300,
-  	  justifyContent: 'center'
+  	  // display: 'flex',
+  	  // flexDirection: 'column',
+  	  // height: 300,
+      // justifyContent: 'center'
+      marginTop: 20,
+      marginBottom: 20
     },
     title: {
       color: '#616161',
       fontFamily: 'PT Serif',
       fontWeight: 700,
-      fontSize: 30,
+      fontSize: 24,
       textAlign: 'center'
     },
 	  listTitle: {
@@ -152,14 +154,20 @@ const PDFItinerary = (props) => {
       color: '#ffffff',
       backgroundColor: 'black'
     },
+    cardLabelred: {
+      color: '#f5222d',
+      backgroundColor: '#fff1f0',
+      border: '1 solid #ffa39e'
+    },
     pageNumber: {
-      position: 'absolute',
-      fontSize: 12,
-      bottom: 30,
-      left: 0,
-      right: 0,
-      textAlign: 'center',
       color: 'grey',
+      fontSize: 12,
+      position: 'absolute',
+      minHeight: '40px',
+      bottom: '0px',
+      left: '0px',
+      right: '0px',
+      textAlign: 'center',
     }
   });
 
@@ -177,7 +185,7 @@ const PDFItinerary = (props) => {
               <Text style={styles.title}>{title}</Text>
             </View>
 
-            <Text style={styles.banner}></Text>
+            { /* <Text style={styles.banner}></Text> */ }
 
               {headerImages ? 
                 <Image 

@@ -58,7 +58,7 @@ const SupportGuide = (props) => {
 
           <Title level={4} id="example-board">Using the Example Board</Title>
 
-          <p>Make sure that you're logged into your <a href="https://trello.com/" title="Trello Home">Trello account</a> and navigate to our <a href="https://trello.com/b/I0TyGYpi" target="_blank" rel="noopener noreferrer">example board</a>. From here, click the <Text strong={true}>Show Menu</Text> button and select <Text strong={true}>More</Text>:</p>
+          <p>Make sure that you're logged into your <a href="https://trello.com/" title="Trello Home">Trello account</a> and navigate to our <a href="https://trello.com/b/aMsO3PuO" target="_blank" rel="noopener noreferrer">example board</a>. From here, click the <Text strong={true}>Show Menu</Text> button and select <Text strong={true}>More</Text>:</p>
 
           <img src="/guide/show-menu.png" width="400" alt="Trello board show menu button location" />
 

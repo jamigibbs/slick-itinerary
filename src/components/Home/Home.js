@@ -44,7 +44,7 @@ const Home = (props) => {
                 <Text strong>Quick Start</Text>
 
                 <Paragraph>
-                Copy our <a href={`${TRELLO_URL}/b/I0TyGYpi`} aria-label="Example board" target="_blank" rel="noopener noreferrer">example trip board</a> and modify it for your own trip. Then enter your board link below to generate an itineray.
+                Copy our <a href={`${TRELLO_URL}/b/aMsO3PuO`} aria-label="Example board" target="_blank" rel="noopener noreferrer">example trip board</a> and modify it for your own trip. Then enter your board link below to generate an itineray.
                 </Paragraph>
 
                 <Paragraph style={{marginBottom: '20px'}}>Need more help? Check out the <Link to="guide">support guide</Link>.</Paragraph>

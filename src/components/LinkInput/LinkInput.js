@@ -74,7 +74,7 @@ const LinkInput = (props) => {
   }
 
   function getBoardShortId(link){
-    // eg. https://trello.com/b/I0TyGYpi
+    // eg. https://trello.com/b/aMsO3PuO
     return link.split('b/')[1];
   }
 
@@ -85,7 +85,7 @@ const LinkInput = (props) => {
         size="large" 
         type="text" 
         value={link}
-        placeholder="ie. https://trello.com/b/I0TyGYpi" 
+        placeholder="ie. https://trello.com/b/aMsO3PuO" 
         onChange={(e) => handleInputChange(e)}
         onPressEnter={(e) => handleInputSubmit(e)} />
         {error && 
