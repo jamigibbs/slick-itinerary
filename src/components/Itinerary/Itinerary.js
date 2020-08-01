@@ -9,17 +9,16 @@ import './Itinerary.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcase} from '@fortawesome/free-solid-svg-icons'
 import { MehOutlined } from '@ant-design/icons';
-import { ACCENT_COLOR_KEY } from '../../constants';
+import { ACCENT_COLOR_KEY, BOARD_HISTORY_KEY } from '../../constants';
 
-const Itinerary = (props) => {
+const Itinerary = ({props}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [itinerary, setItinerary] = useState({});
   const [error, setError] = useState(null);
   const [accentColor, setAccentColor] = useState('#E1474A');
 
   useEffect(() => {
-    // const { props } = myProps;
-    const boardShortLink = props.props.match.params.boardShortLink;
+    const boardShortLink = props.match.params.boardShortLink;
     setIsLoading(true);
     fetchBoardItinerary(boardShortLink);
   }, []);
@@ -36,6 +35,7 @@ const Itinerary = (props) => {
           setAccentColor(accentColor);
         }
 
+        updateBoardHistoryName(itinerary.shortLink, itinerary.name);
         setItinerary(itinerary);
         setIsLoading(false);
       })
@@ -44,6 +44,18 @@ const Itinerary = (props) => {
 
   const handleLoadingIndicator = (bool) => {
     setIsLoading(bool);
+  }
+
+  const updateBoardHistoryName = (shortLink, name) => {
+    const boardHistory = JSON.parse(localStorage.getItem(BOARD_HISTORY_KEY));
+    boardHistory.map((board) => {
+      if (board.id === shortLink) {
+        board.name = name;
+      }
+      return board;
+    });
+
+    localStorage.setItem(BOARD_HISTORY_KEY, JSON.stringify(boardHistory));
   }
 
   const updateAccentColor = (accentColor) => {
