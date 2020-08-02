@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { isProduction } from '../../utils';
-import ReactGA from 'react-ga';
+import { triggerGAEventPush } from '../../utils';
 import PDFItinerary from "../PDFItinerary";
 import { saveAs } from "file-saver";
 import { pdf } from "@react-pdf/renderer";
@@ -24,13 +23,11 @@ const Header = (props) => {
   const handleShareClick = (event) => {
     event.preventDefault();
 
-    if (isProduction) {
-      ReactGA.event({
-        category: 'User',
-        action: 'Emailed Itinerary',
-        label: window.location.pathname
-      });
-    }
+    triggerGAEventPush({
+      category: 'User',
+      action: 'Emailed Itinerary',
+      label: window.location.pathname
+    });
 
     window.location.href = emailLink();
   }
@@ -56,13 +53,11 @@ const Header = (props) => {
     props.handleLoadingIndicator(false);
     saveAs(result, `${title}.pdf`);
 
-    if (isProduction) {
-      ReactGA.event({
-        category: 'User',
-        action: 'Generated PDF',
-        label: window.location.pathname
-      });
-    }
+    triggerGAEventPush({
+      category: 'User',
+      action: 'Generated PDF',
+      label: window.location.pathname
+    });
   }
 
   const { 

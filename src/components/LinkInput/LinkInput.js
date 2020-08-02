@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { isProduction } from '../../utils';
-import ReactGA from 'react-ga';
+import { triggerGAEventPush } from '../../utils';
 import { Input, Typography } from 'antd';
 import './LinkInput.css';
 
@@ -17,14 +16,12 @@ const LinkInput = (props) => {
     const boardId = getBoardShortId(link);
     if (boardId) {
       setError('');
-
-      if (isProduction) {
-        ReactGA.event({
-          category: 'User',
-          action: 'Submitted a board',
-          label: boardId
-        });
-      }
+      
+      triggerGAEventPush({
+        category: 'User',
+        action: 'Submitted a board',
+        label: boardId
+      });
 
       // Navigate to the board itinerary view.
       history.push(boardId);

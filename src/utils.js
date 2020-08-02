@@ -1,3 +1,5 @@
+import ReactGA from 'react-ga';
+
 export const isLocalHost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
@@ -11,3 +13,9 @@ export const isLocalHost = Boolean(
 export const isProduction = Boolean(
   process.env.NODE_ENV === 'production'
 )
+
+export const triggerGAEventPush = ({category, action, label}) => {
+  if (isProduction) {
+    ReactGA.event({category, action, label});
+  }
+}

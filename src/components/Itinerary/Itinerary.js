@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BackTop } from 'antd';
-import { isLocalHost, isProduction } from '../../utils';
-import ReactGA from 'react-ga';
+import { isLocalHost, triggerGAEventPush } from '../../utils';
 import Header from '../Header';
 import LoadingSpinner from '../LoadingSpinner';
 import ItineraryCards from'../ItineraryCards';
@@ -117,13 +116,11 @@ const Itinerary = ({props}) => {
       name: itinerary.name,
     });
 
-    if (isProduction) {
-      ReactGA.event({
-        category: 'User',
-        action: 'Updated Color',
-        label: accentColor
-      });
-    }
+    triggerGAEventPush({
+      category: 'User',
+      action: 'Updated Color',
+      label: accentColor
+    });
   }
 
   const isData = itinerary.id;
