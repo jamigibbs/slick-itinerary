@@ -9,13 +9,13 @@ import './Itinerary.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcase} from '@fortawesome/free-solid-svg-icons'
 import { MehOutlined } from '@ant-design/icons';
-import { ACCENT_COLOR_KEY, BOARD_HISTORY_KEY } from '../../constants';
+import { DEFAULT_ACCENT_COLOR_HEX, BOARD_HISTORY_KEY } from '../../constants';
 
 const Itinerary = ({props}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [itinerary, setItinerary] = useState({});
   const [error, setError] = useState(null);
-  const [accentColor, setAccentColor] = useState('#E1474A');
+  const [accentColor, setAccentColor] = useState(DEFAULT_ACCENT_COLOR_HEX);
 
   useEffect(() => {
     const boardShortLink = props.match.params.boardShortLink;
@@ -28,39 +28,94 @@ const Itinerary = ({props}) => {
       .then((response) => response.json())
       .then((itinerary) => {
         if (isLocalHost) console.log('itinerary', itinerary);
-        
-        const itineraryColorKey = ACCENT_COLOR_KEY + '_' + itinerary.shortLink;
-        const accentColor = localStorage.getItem(itineraryColorKey);
-        if (accentColor) {
-          setAccentColor(accentColor);
-        }
-
-        updateBoardHistoryName(itinerary.shortLink, itinerary.name);
         setItinerary(itinerary);
         setIsLoading(false);
+        setLocalStorage(itinerary, boardShortLink);
       })
       .catch((error) => setError(error));
+  }
+
+  const setLocalStorage = (itinerary, boardShortLink) => {
+    const boardHistory = getBoardHistoryLocalStorage();
+    let timestamp =  Date.now(); 
+    // Setting board history localStorage.
+    if (boardHistory && boardHistory.length > 0) {
+      const activeBoard = boardHistory.find((board) => {
+        return board.id === boardShortLink;
+      });
+      // If the active board is already in the history, update those values.
+      if (activeBoard) {
+        setAccentColor(activeBoard.color);
+        updateBoardHistoryItem(boardHistory, {
+          timestamp,
+          id: boardShortLink,
+          color: activeBoard.color,
+          name: itinerary.name
+        });
+      } else {
+        // There is a board history but this board is not in it yet.
+        addBoardHistoryItem({
+          timestamp,
+          id: boardShortLink,
+          color: DEFAULT_ACCENT_COLOR_HEX,
+          name: itinerary.name
+        })
+      }
+    } else {
+      // No board history at all so let's create it.
+      setBoardHistoryLocalStorage([{
+        timestamp,
+        id: boardShortLink,
+        color: DEFAULT_ACCENT_COLOR_HEX,
+        name: itinerary.name
+      }]);
+    }
   }
 
   const handleLoadingIndicator = (bool) => {
     setIsLoading(bool);
   }
 
-  const updateBoardHistoryName = (shortLink, name) => {
+  const addBoardHistoryItem = (item) => {
     const boardHistory = JSON.parse(localStorage.getItem(BOARD_HISTORY_KEY));
-    boardHistory.map((board) => {
-      if (board.id === shortLink) {
-        board.name = name;
-      }
-      return board;
-    });
-
-    localStorage.setItem(BOARD_HISTORY_KEY, JSON.stringify(boardHistory));
+    boardHistory.push(item);
+    setBoardHistoryLocalStorage(boardHistory);
   }
 
-  const updateAccentColor = (accentColor) => {
-    // this.setState({accentColor});
-    setAccentColor(accentColor);
+  const updateBoardHistoryItem = (boardHistory, item) => {
+    const index = boardHistory.findIndex(board => board.id === item.id);
+    
+    if (index !== -1) {
+      Object.assign(boardHistory[index], {
+        timestamp: item.timestamp,
+        id: item.id,
+        color: item.color,
+        name: item.name
+      })
+      setBoardHistoryLocalStorage(boardHistory);
+    }
+  }
+
+  const getBoardHistoryLocalStorage = () => {
+    return JSON.parse(localStorage.getItem(BOARD_HISTORY_KEY));
+  }
+
+  const setBoardHistoryLocalStorage = (history) => {
+    localStorage.setItem(BOARD_HISTORY_KEY, JSON.stringify(history));
+  }
+
+  const updateAccentColor = (color) => {
+    setAccentColor(color);
+
+    const boardHistory = getBoardHistoryLocalStorage();
+    let timestamp =  Date.now();
+
+    updateBoardHistoryItem(boardHistory, {
+      color,
+      timestamp,
+      id: itinerary.shortLink,
+      name: itinerary.name,
+    });
 
     if (isProduction) {
       ReactGA.event({
@@ -69,10 +124,6 @@ const Itinerary = ({props}) => {
         label: accentColor
       });
     }
-
-    // Setting the selected color into local storage.
-    const itineraryColorKey = ACCENT_COLOR_KEY + '_' + itinerary.shortLink;
-    localStorage.setItem(itineraryColorKey, accentColor);
   }
 
   const isData = itinerary.id;

@@ -4,14 +4,12 @@ import { isProduction } from '../../utils';
 import ReactGA from 'react-ga';
 import { Input, Typography } from 'antd';
 import './LinkInput.css';
-import { TRELLO_API_ROOT, TRELLO_KEY, TRELLO_TOKEN, BOARD_HISTORY_KEY } from '../../constants';
 
 const { Text } = Typography;
 
 const LinkInput = (props) => {
   const [link, setLink] = useState('');
   const [error, setError] = useState('');
-
   const history = useHistory();
 
   function handleInputSubmit(event) {
@@ -19,53 +17,20 @@ const LinkInput = (props) => {
     const boardId = getBoardShortId(link);
     if (boardId) {
       setError('');
-      updateBoardHistory(boardId);
-      // Navigate to the board's itinerary page.
+
+      if (isProduction) {
+        ReactGA.event({
+          category: 'User',
+          action: 'Submitted a board',
+          label: boardId
+        });
+      }
+
+      // Navigate to the board itinerary view.
       history.push(boardId);
     } else {
       setError('Please enter a Trello board link.');
     }
-  }
-
-  async function updateBoardHistory(id){
-    if (isProduction) {
-      ReactGA.event({
-        category: 'User',
-        action: 'Submitted a board',
-        label: id
-      });
-    }
-
-    let timestamp =  Date.now();
-    const boardHistory = localStorage.getItem(BOARD_HISTORY_KEY);
-
-    if (boardHistory) {
-      const boardHistoryParsed = JSON.parse(localStorage.getItem(BOARD_HISTORY_KEY));
-      // Check if the board ID exists already.
-      const index = boardHistoryParsed.findIndex((board) => {
-        return board.id === id;
-      });
-
-      if (index !== -1) {
-        // If the board exists, update the timestamp.
-        boardHistoryParsed[index].timestamp = timestamp;
-      } else {
-        // Otherwise, add the new board to the history.
-        const trelloResponse = await getBoardName(id);
-        const boardData = await trelloResponse.json();
-        boardHistoryParsed.push({timestamp, id, name: boardData.name});
-      }
-      localStorage.setItem(BOARD_HISTORY_KEY, JSON.stringify(boardHistoryParsed));
-    } else {
-      const trelloResponse = await getBoardName(id);
-      const boardData = await trelloResponse.json();
-      const newBoardHistory = [{timestamp, id, name: boardData.name}];
-      localStorage.setItem(BOARD_HISTORY_KEY, JSON.stringify(newBoardHistory));
-    }
-  }
-
-  function getBoardName(id) {
-    return fetch(`${TRELLO_API_ROOT}/boards/${id}?fields=name&key=${TRELLO_KEY}&token=${TRELLO_TOKEN}`);
   }
 
   function handleInputChange(event) {
@@ -74,8 +39,10 @@ const LinkInput = (props) => {
   }
 
   function getBoardShortId(link){
-    // eg. https://trello.com/b/aMsO3PuO
-    return link.split('b/')[1];
+    // eg. https://trello.com/b/aMsO3PuO or https://trello.com/b/aMsO3PuO/my-board-name
+    const linkArray = link.split('/');
+    const boardIdIndex = linkArray.findIndex(el => el === 'b');
+    return boardIdIndex ? linkArray[boardIdIndex + 1] : null;
   }
 
   return (
