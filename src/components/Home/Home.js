@@ -4,6 +4,7 @@ import LinkInput from '../LinkInput';
 import BoardHistory from '../BoardHistory';
 import SiteFooter from '../SiteFooter';
 import './Home.css';
+import { setPageTitle } from '../../utils';
 import { Layout, Row, Col, Divider, Typography } from 'antd';
 import { BOARD_HISTORY_KEY, TRELLO_URL } from '../../constants';
 
@@ -15,6 +16,7 @@ const Home = (props) => {
 
   useEffect(() => {
     setBoardHistoryFromLocalStorage();
+    setPageTitle();
   }, []);
 
   const setBoardHistoryFromLocalStorage = () => {

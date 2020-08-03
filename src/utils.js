@@ -19,3 +19,8 @@ export const triggerGAEventPush = ({category, action, label}) => {
     ReactGA.event({category, action, label});
   }
 }
+
+export const setPageTitle = (str) => {
+  const title = str ? `${str} | Slick Itinerary` : 'Slick Itinerary';
+  document.title = title;
+}

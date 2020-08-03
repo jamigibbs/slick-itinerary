@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BackTop } from 'antd';
-import { isLocalHost, triggerGAEventPush } from '../../utils';
+import { isLocalHost, triggerGAEventPush, setPageTitle } from '../../utils';
 import Header from '../Header';
 import LoadingSpinner from '../LoadingSpinner';
 import ItineraryCards from'../ItineraryCards';
@@ -28,6 +28,7 @@ const Itinerary = ({props}) => {
       .then((response) => response.json())
       .then((itinerary) => {
         if (isLocalHost) console.log('itinerary', itinerary);
+        setPageTitle(itinerary.name);
         setItinerary(itinerary);
         setIsLoading(false);
         setLocalStorage(itinerary, boardShortLink);

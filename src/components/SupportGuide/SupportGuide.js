@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
-import { isProduction } from '../../utils';
+import { isProduction, setPageTitle } from '../../utils';
 import ReactGA from 'react-ga';
 import SiteFooter from '../SiteFooter';
 import { Layout, Anchor, Typography, Divider, BackTop } from 'antd';
@@ -17,8 +17,7 @@ if (isProduction) {
 const SupportGuide = (props) => {
   const [redirectHome, setRedirectHome] = useState(false);
 
-  // Set the page title to the itinerary name
-  document.title = `Support Guide | Slick Itinerary`;
+  setPageTitle('Support Guide');
 
   function handleHomeClick(event){
     event.preventDefault();
