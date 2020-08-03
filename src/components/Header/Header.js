@@ -42,7 +42,7 @@ const Header = (props) => {
   }
 
   const generatePDF= async () => {
-    props.handleLoadingIndicator(true);
+    props.handleLoadingIndicator(true, 'Hang tight while we generate your PDF file...');
 
     const {title, lists, accentColor, headerImages, backgroundColor} = props;
     const itinerary = <PDFItinerary title={title} lists={lists} accentColor={accentColor} headerImages={headerImages} backgroundColor={backgroundColor} />;

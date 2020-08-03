@@ -13,6 +13,7 @@ import { DEFAULT_ACCENT_COLOR_HEX, BOARD_HISTORY_KEY } from '../../constants';
 const Itinerary = ({props}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [itinerary, setItinerary] = useState({});
+  const [loadingText, setLoadingText] = useState('Loading your itinerary...');
   const [error, setError] = useState(null);
   const [accentColor, setAccentColor] = useState(DEFAULT_ACCENT_COLOR_HEX);
 
@@ -71,8 +72,11 @@ const Itinerary = ({props}) => {
     }
   }
 
-  const handleLoadingIndicator = (bool) => {
+  const handleLoadingIndicator = (bool, text) => {
     setIsLoading(bool);
+    if (text) {
+      setLoadingText(text);
+    }
   }
 
   const addBoardHistoryItem = (item) => {
@@ -134,7 +138,7 @@ const Itinerary = ({props}) => {
                   title={itinerary.name} 
                   lists={itinerary.lists} 
                   accentColor={accentColor}
-                  handleLoadingIndicator={(bool) => handleLoadingIndicator(bool)}
+                  handleLoadingIndicator={(bool, text) => handleLoadingIndicator(bool, text)}
                   handleColorUpdated={(hex) => updateAccentColor(hex)}/>
         }
 
@@ -169,10 +173,9 @@ const Itinerary = ({props}) => {
 
         {!error && isLoading &&
           <div className="loading-spinner">
-            <LoadingSpinner isLoading={true} />
+            <LoadingSpinner isLoading={true} text={loadingText} />
           </div>
         }
-
     </div>
   )
 }

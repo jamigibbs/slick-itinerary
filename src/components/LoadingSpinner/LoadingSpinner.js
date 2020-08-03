@@ -8,7 +8,7 @@ const override = css`
 `;
 
 const LoadingSpinner = (props) => {
-  const { isLoading } = props;
+  const { isLoading, text } = props;
   return (
     <div className="sweet-loading">
       <PuffLoader
@@ -17,6 +17,8 @@ const LoadingSpinner = (props) => {
         color={"#47D7B7"}
         loading={isLoading}
       />
+
+      {text ? <p style={{color: '#999999', marginTop: '10px', textAlign: 'center'}}>{text}</p> : null}
     </div>
   );
 }
