@@ -59,7 +59,7 @@ const Home = (props) => {
               </div>
             </Col>
             <Col className="home-right-column" xs={{ span: 24, order: 1 }} sm={{ span: 24, order: 1 }} md={{ span: 12, order: 2 }} >
-              <img src="home-bg.svg" alt="woman riding bike" />
+              <img src="img/home-bg.svg" alt="woman riding bike" />
             </Col>
           </Row>
         </Content>

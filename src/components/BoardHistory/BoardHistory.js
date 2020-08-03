@@ -22,7 +22,7 @@ const BoardHistory = (props) => {
             </Tooltip>
             <Tooltip title={`${item.name} Trello board`} color="blue" placement="right">
               <a href={`https://trello.com/b/${item.id}`} aria-label={`Trello board with ID ${item.id}`} target="_blank" rel="noopener noreferrer"> 
-                <img src="trello-logo.svg" alt="Trello Logo" width="15" />
+                <img src="img/trello-logo.svg" alt="Trello Logo" width="15" />
               </a>
             </Tooltip>
           </List.Item>
