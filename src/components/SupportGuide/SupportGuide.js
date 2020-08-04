@@ -97,13 +97,19 @@ const SupportGuide = (props) => {
 
           <Title level={4} id="board-link">Find Your Board Link</Title>
 
-          <p>Your board link is used to generate your itinerary. To find your board link, navigate to your board settings at <br />
+          <p>Your board link is used to generate your itinerary. Copy your board link from either the browser address bar:</p>
+
+          <img src="/guide/board-link-browser.png" width="600" alt="Trello board link location" />
+
+          <Divider />
+
+          <p>Or, navigate to your board settings and copy the link from there.<br />
 
           <Text strong={true}>Show Menu > More > Link to this board</Text>:</p>
 
           <Divider />
 
-          <img src="/guide/link-to-board.png" width="500" alt="Trello board link location" />
+          <img src="/guide/board-link-settings.png" width="500" alt="Trello board link location" />
 
           <Divider />
 
