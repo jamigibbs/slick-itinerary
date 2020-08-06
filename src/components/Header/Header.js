@@ -69,8 +69,8 @@ const Header = (props) => {
   let bg = null;
   let headerStyle = {};
 
-  if (headerImages) {
-    bg = headerImages[5].url;
+  if (headerImages && headerImages[4]) {
+    bg = headerImages[4].url;
     headerStyle = {
       background: `url(${bg}) no-repeat center center fixed`,
       backgroundSize: 'cover'
