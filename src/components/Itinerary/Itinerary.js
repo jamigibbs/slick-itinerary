@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { BackTop } from 'antd';
+import { BackTop, Layout } from 'antd';
 import { isLocalHost, triggerGAEventPush, setPageTitle } from '../../utils';
 import Header from '../Header';
 import LoadingSpinner from '../LoadingSpinner';
 import ItineraryCards from'../ItineraryCards';
+import SiteFooter from '../SiteFooter';
 import './Itinerary.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcase} from '@fortawesome/free-solid-svg-icons'
 import { MehOutlined } from '@ant-design/icons';
 import { DEFAULT_ACCENT_COLOR_HEX, BOARD_HISTORY_KEY } from '../../constants';
+
+const { Footer } = Layout;
 
 const Itinerary = ({props}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -176,6 +179,12 @@ const Itinerary = ({props}) => {
           <div className="loading-spinner">
             <LoadingSpinner isLoading={true} text={loadingText} />
           </div>
+        }
+
+        {!error && !isLoading && isData &&
+          <Footer className="footer" style={{backgroundColor: '#333333'}}>
+            <SiteFooter></SiteFooter>
+          </Footer>
         }
     </div>
   )
