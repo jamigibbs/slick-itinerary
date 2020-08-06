@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BackTop, Layout } from 'antd';
-import { isLocalHost, triggerGAEventPush, setPageTitle } from '../../utils';
+import { isLocalHost, triggerGAEventPush, setPageTitle, getUrlParameter, insertUrlParam } from '../../utils';
 import Header from '../Header';
 import LoadingSpinner from '../LoadingSpinner';
 import ItineraryCards from'../ItineraryCards';
@@ -42,6 +42,8 @@ const Itinerary = ({props}) => {
   const setLocalStorage = (itinerary, boardShortLink) => {
     const boardHistory = getBoardHistoryLocalStorage();
     let timestamp =  Date.now(); 
+    const color = getUrlParameter('color');
+
     // Setting board history localStorage.
     if (boardHistory && boardHistory.length > 0) {
       const activeBoard = boardHistory.find((board) => {
@@ -49,28 +51,35 @@ const Itinerary = ({props}) => {
       });
       // If the active board is already in the history, update those values.
       if (activeBoard) {
-        setAccentColor(activeBoard.color);
+        const activeColor = color ? `#${color}` : activeBoard.color;
+        if (activeColor) insertUrlParam('color', activeColor.slice(1));
+        setAccentColor(activeColor);
+
         updateBoardHistoryItem(boardHistory, {
           timestamp,
+          color: activeColor,
           id: boardShortLink,
-          color: activeBoard.color,
           name: itinerary.name
         });
       } else {
+        const activeColor = color ? color : DEFAULT_ACCENT_COLOR_HEX;
+        setAccentColor(activeColor);
         // There is a board history but this board is not in it yet.
         addBoardHistoryItem({
           timestamp,
           id: boardShortLink,
-          color: DEFAULT_ACCENT_COLOR_HEX,
+          color: activeColor,
           name: itinerary.name
         })
       }
     } else {
+      const activeColor = color ? color : DEFAULT_ACCENT_COLOR_HEX;
+      setAccentColor(activeColor);
       // No board history at all so let's create it.
       setBoardHistoryLocalStorage([{
         timestamp,
         id: boardShortLink,
-        color: DEFAULT_ACCENT_COLOR_HEX,
+        color: activeColor,
         name: itinerary.name
       }]);
     }
@@ -113,6 +122,7 @@ const Itinerary = ({props}) => {
 
   const updateAccentColor = (color) => {
     setAccentColor(color);
+    insertUrlParam('color', color.slice(1)); // Removes # from color hex.
 
     const boardHistory = getBoardHistoryLocalStorage();
     let timestamp =  Date.now();

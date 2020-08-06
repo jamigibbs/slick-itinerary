@@ -94,11 +94,11 @@
 }
 
 .itinerary-list-name {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 800;
-  margin-bottom: 1.75em;
+  margin-bottom: 0.75em;
   position: relative;
-  top: -3px;
+  top: -7px;
 }
 
 @media print {
