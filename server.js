@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const request = require('request');
 
 const port = process.env.PORT || 5000;
 
@@ -24,7 +25,68 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+const originWhitelist = parseEnvList(process.env.CORSANYWHERE_WHITELIST);
+
+function parseEnvList(env) {
+  if (!env) {
+    return [];
+  }
+  return env.split(',');
+}
+
+/**
+ * Adds CORS headers to the response headers.
+ * https://github.com/jamigibbs/slick-itinerary-img/blob/master/lib/cors-anywhere.js
+ * 
+ * @param headers {object} Response headers
+ * @param request {ServerRequest}
+ */
+function withCORS(headers, request) {
+  headers['access-control-allow-origin'] = '*';
+  let corsMaxAge = 0;
+  if (corsMaxAge) {
+    headers['access-control-max-age'] = corsMaxAge;
+  }
+  if (request.headers['access-control-request-method']) {
+    headers['access-control-allow-methods'] = request.headers['access-control-request-method'];
+    delete request.headers['access-control-request-method'];
+  }
+  if (request.headers['access-control-request-headers']) {
+    headers['access-control-allow-headers'] = request.headers['access-control-request-headers'];
+    delete request.headers['access-control-request-headers'];
+  }
+
+  headers['access-control-expose-headers'] = Object.keys(headers).join(',');
+
+  return headers;
+}
+
+const originWhitelistCheck = (req, res) => {
+  const origin = req.headers.host || '';
+  const cors_headers = withCORS({}, req);
+
+  if (originWhitelist.length && originWhitelist.indexOf(origin) === -1) {
+    res.writeHead(403, 'Forbidden', cors_headers);
+    res.end('The origin "' + origin + '" was not whitelisted by the operator of this proxy.');
+    return;
+  }
+}
+
+app.get('/api/img/:url', function(req, res) {
+  originWhitelistCheck(req, res);
+  const url = req.params.url;
+  try {
+    // Images from AWS are getting blocked by cors for the PDF generator so this route proxies the 
+    // request with the access allow header for it.
+    res.header("Access-Control-Allow-Origin", "*");
+    request(url).pipe(res);
+  } catch(error) {
+    return res.status(400).send(error);
+  }
+});
+
 app.get('/api/board/:boardShortLink', async function (req, res) {
+  originWhitelistCheck(req, res);
   const boardShortLink = req.params.boardShortLink;
   try {
     const itinerary = await getTrelloBoards(boardShortLink);

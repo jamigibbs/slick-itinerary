@@ -177,6 +177,11 @@ const PDFItinerary = (props) => {
     return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
   }
 
+  const encodeURI = (uri) => {
+    return encodeURIComponent(uri);
+  }
+
+  const headerImgUrl = encodeURI(headerImages[5].url);
   return (
       <Document>
           <Page size="LETTER">
@@ -190,7 +195,7 @@ const PDFItinerary = (props) => {
               {headerImages ? 
                 <Image 
                   style={styles.image}
-                  src={`https://slick-itinerary-img.herokuapp.com/${headerImages[5].url}`}>
+                  src={`/api/img/${headerImgUrl}`}>
                 </Image>
               : <Text style={[styles.image, { backgroundColor: backgroundColor}]}></Text>}
 
@@ -217,7 +222,7 @@ const PDFItinerary = (props) => {
                     {card.cover && 
                       <Image 
                         style={styles.cardImage}
-                        src={`https://slick-itinerary-img.herokuapp.com/${card.cover.url}`}>
+                        src={`/api/img/${encodeURI(card.cover.url)}`}>
                       </Image>
                     }
                     
