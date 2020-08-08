@@ -47,10 +47,6 @@ const ItineraryCard = (props) => {
     googleMapLink = `https://maps.google.com/?q=1200 ${address.value.text}`;
   }
 
-  const encodeURI = (uri) => {
-    return encodeURIComponent(uri);
-  }
-
   return (
     <div className="itinerary-card">
       {startTime && <div className="card-start-time">{startTime}</div>}
@@ -67,9 +63,9 @@ const ItineraryCard = (props) => {
           }
         </div>
         <div className="header-right-column">
-          {coverUrl ? 
-            <img className="card-cover" src={`/api/img/${encodeURI(coverUrl)}`} alt={card.name}></img>
-          : null }
+          {coverUrl && 
+            <img className="card-cover" src={coverUrl} alt={card.name}></img>
+          }
         </div>
 
       </div>
