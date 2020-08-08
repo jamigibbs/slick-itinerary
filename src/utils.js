@@ -26,6 +26,7 @@ export const setPageTitle = (str) => {
 }
 
 export const getUrlParameter = (name) => {
+  // eslint-disable-next-line
   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
   let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
   let results = regex.exec(window.location.search);

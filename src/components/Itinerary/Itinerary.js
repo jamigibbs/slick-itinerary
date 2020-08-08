@@ -19,12 +19,12 @@ const Itinerary = ({props}) => {
   const [loadingText, setLoadingText] = useState('Loading your itinerary...');
   const [error, setError] = useState(null);
   const [accentColor, setAccentColor] = useState(DEFAULT_ACCENT_COLOR_HEX);
+  const boardShortLink = props.match.params.boardShortLink;
 
   useEffect(() => {
-    const boardShortLink = props.match.params.boardShortLink;
     setIsLoading(true);
     fetchBoardItinerary(boardShortLink);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchBoardItinerary = (boardShortLink) => {
     fetch(`/api/board/${boardShortLink}`)

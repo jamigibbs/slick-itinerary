@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { triggerGAEventPush } from '../../utils';
 import PDFItinerary from "../PDFItinerary";
 import { saveAs } from "file-saver";
@@ -36,9 +37,9 @@ const Header = (props) => {
     const { title } = props;
     const email = {
       subject: `Check out the itinerary for ${title}`,
-      body: `I created an itinerary for our trip and I\'d like to share it with you: ${window.location.href}`
+      body: `I created an itinerary for our trip and I'd like to share it with you: ${window.location.href}`
     }
-    return `mailto:enteranemail?subject=${email.subject}&body=${email.body}`;
+    return `mailto:EMAILHERE?subject=${email.subject}&body=${email.body}`;
   }
 
   const generatePDF= async () => {
