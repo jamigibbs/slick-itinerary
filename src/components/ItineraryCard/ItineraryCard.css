@@ -3,6 +3,21 @@
   word-wrap: break-word;
 }
 
+.card-desc ul {
+  margin-bottom: 1em;
+}
+
+.card-desc ul li {
+  margin-bottom: 0;
+}
+
+.card-desc blockquote {
+  border-left: 1px solid rgba(9,30,66,.13);
+  color: #5e6c84;
+  margin: 12px 0 12px 11px;
+  padding: 0 0 0 12px;
+}
+
 .card-name, .card-name a {
   font-weight: 600;
   font-size: 18px;

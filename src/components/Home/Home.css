@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700');
 
-.logo {
+h1.logo {
   font-family: 'PT Serif', serif;
-  font-weight: 700;
+  margin-bottom: .1em;
 }
 
 .flex-grid {
@@ -18,9 +18,7 @@
 }
 
 .col.left {
-  padding-right: 50px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding: 30px 50px;
 }
 
 .col.right {
