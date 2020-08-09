@@ -7,8 +7,8 @@ const PDFItinerary = (props) => {
   const { lists, title, accentColor, headerImages, backgroundColor } = props; 
 
   Font.register({ family: 'Nunito Sans', fonts: [
-    { src: 'http://fonts.gstatic.com/s/nunitosans/v1/qDS9UelBO44ppiSawKNcIKCWcynf_cDxXwCLxiixG1c.ttf' }, // font-style: normal, font-weight: normal
-    { src: 'http://fonts.gstatic.com/s/nunitosans/v1/XvilrNtBQKRMeiqSPzEFHXe1Pd76Vl7zRpE7NLJQ7XU.ttf', fontWeight: 700 },
+    { src: 'https://fonts.gstatic.com/s/nunitosans/v1/qDS9UelBO44ppiSawKNcIKCWcynf_cDxXwCLxiixG1c.ttf' }, // font-style: normal, font-weight: normal
+    { src: 'https://fonts.gstatic.com/s/nunitosans/v1/XvilrNtBQKRMeiqSPzEFHXe1Pd76Vl7zRpE7NLJQ7XU.ttf', fontWeight: 700 },
    ]});
 
    const styles = StyleSheet.create({
