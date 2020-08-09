@@ -19,6 +19,9 @@ h1.logo {
 
 .col.left {
   padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .col.right {
