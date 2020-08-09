@@ -13,7 +13,7 @@ const BoardHistory = (props) => {
     <div>
       <List
         size="small"
-        header={<h2 className="history-header">Your Recent Itineraries</h2>}
+        header={<h2 className="history-header" style={{color: 'rgba(0, 0, 0, 0.65)'}}><strong>Your Recent Itineraries</strong></h2>}
         dataSource={data}
         renderItem={item => (
           <List.Item>

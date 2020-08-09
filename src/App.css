@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800');
 
+@font-face {
+  font-family: 'AvenirNext';
+  src: local('AvenirNext'), url(../../fonts/AvenirNext/AvenirNextLTPro-Regular.otf) format('opentype');
+}
+
 .App {
-  font-family: 'Open Sans';
+  font-family: 'AvenirNext';
   font-weight: 400;
 }
 

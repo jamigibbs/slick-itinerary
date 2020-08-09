@@ -6,18 +6,9 @@ const removeMd = require('remove-markdown');
 const PDFItinerary = (props) => {
   const { lists, title, accentColor, headerImages, backgroundColor } = props; 
 
-  // https://gist.github.com/karimnaaji/b6c9c9e819204113e9cabf290d580551
-  Font.register({ family: 'PT Serif', fonts: [
-    { src: 'https://fonts.gstatic.com/s/ptserif/v8/sAo427rn3-QL9sWCbMZXhA.ttf' }, // font-style: normal, font-weight: normal
-    { src: 'https://fonts.gstatic.com/s/ptserif/v8/kyZw18tqQ5if-_wpmxxOeKCWcynf_cDxXwCLxiixG1c.ttf', fontWeight: 700 },
-   ]});
-
-   Font.register({ family: 'Roboto', fonts: [
-    { src: 'https://fonts.gstatic.com/s/roboto/v15/W5F8_SL0XFawnjxHGsZjJA.ttf' }, // font-style: normal, font-weight: normal
-    { src: '"https://fonts.gstatic.com/s/roboto/v15/7MygqTe2zs9YkP0adA9QQQ.ttf', fontWeight: 100 },
-    { src: 'https://fonts.gstatic.com/s/roboto/v15/dtpHsbgPEm2lVWciJZ0P-A.ttf', fontWeight: 300 },
-    { src: 'https://fonts.gstatic.com/s/roboto/v15/Uxzkqj-MIMWle-XP2pDNAA.ttf', fontWeight: 500 },
-    { src: 'https://fonts.gstatic.com/s/roboto/v15/bdHGHleUa-ndQCOrdpfxfw.ttf', fontWeight: 700 },
+  Font.register({ family: 'Nunito Sans', fonts: [
+    { src: 'http://fonts.gstatic.com/s/nunitosans/v1/qDS9UelBO44ppiSawKNcIKCWcynf_cDxXwCLxiixG1c.ttf' }, // font-style: normal, font-weight: normal
+    { src: 'http://fonts.gstatic.com/s/nunitosans/v1/XvilrNtBQKRMeiqSPzEFHXe1Pd76Vl7zRpE7NLJQ7XU.ttf', fontWeight: 700 },
    ]});
 
    const styles = StyleSheet.create({
@@ -43,14 +34,14 @@ const PDFItinerary = (props) => {
     },
     title: {
       color: '#616161',
-      fontFamily: 'PT Serif',
+      fontFamily: 'Nunito Sans',
       fontWeight: 700,
       fontSize: 24,
       textAlign: 'center'
     },
 	  listTitle: {
       color: '#424242',
-      fontFamily: 'PT Serif',
+      fontFamily: 'Nunito Sans',
       fontWeight: 700,
       fontSize: 18,
       marginBottom: 10,
@@ -58,7 +49,7 @@ const PDFItinerary = (props) => {
       paddingHorizontal: 50
     },
     card: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Nunito Sans',
       fontSize: 12,
       lineHeight: 1.3,
       marginBottom: 5,
@@ -226,18 +217,18 @@ const PDFItinerary = (props) => {
                       </Image>
                     }
                     
-                    <Text style={[styles.cardTitle, styles.marginHorizontal]}>{card.name}</Text>
+                    <Text style={[styles.cardTitle]}>{card.name}</Text>
 
                     {card.customFieldItems.map((field, k) => (
-                      <View key={k} style={styles.marginHorizontal}>
+                      <View key={k}>
                         {field.name === 'Address' && <Text style={styles.cardAddress}>{field.value.text}</Text>}
                         {field.name === 'Link' && <Text style={styles.cardLink}>{field.value.text}</Text>}
                       </View>
                     ))}
 
-                    <Text style={[styles.cardDesc, styles.marginHorizontal]}>{removeMd(card.desc)}</Text>
+                    <Text style={[styles.cardDesc]}>{removeMd(card.desc)}</Text>
                     
-                    <View style={[styles.cardLabelParent, styles.marginHorizontal]}>
+                    <View style={[styles.cardLabelParent]}>
                       {card.labels.map((label) => (
                         <Text style={[styles.cardLabel, styles[`cardLabel${label.color}`]]}>{label.name}</Text>
                       ))}

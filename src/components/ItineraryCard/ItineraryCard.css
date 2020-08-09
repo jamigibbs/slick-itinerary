@@ -34,7 +34,7 @@
 }
 
 .card-name a:hover {
-  color: #212121;
+  color: #212121!important;
 }
 
 .card-address {
