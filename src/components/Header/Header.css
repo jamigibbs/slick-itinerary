@@ -97,6 +97,7 @@
 
 .twitter-picker {
   position: absolute!important;
+  z-index: 1;
 }
 
 .hidden {
